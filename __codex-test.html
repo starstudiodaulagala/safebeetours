@@ -1,0 +1,18 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Codex smoke test</title>
+<script>
+(function(){
+  var key="safeBeeInquiries";
+  var items=[];
+  try{items=JSON.parse(localStorage.getItem(key)||"[]")}catch(err){}
+  items=items.filter(function(item){return item.id!=="qa-inquiry"});
+  if(!new URLSearchParams(location.search).has("cleanup")){
+    sessionStorage.setItem("safeBeeAdminAuthenticated","true");
+    sessionStorage.setItem("safeBeeAdminAuthenticatedAt",new Date().toISOString());
+    items.unshift({id:"qa-inquiry",name:"QA Traveller",phone:"+10000000000",email:"qa@example.test",country:"Testland",arrive:"2026-10-14",days:"7",adults:"2",kids:"0",interests:["Culture & heritage","Wildlife safari"],message:"Smoke test inquiry",status:"New",createdAt:new Date().toISOString(),source:"test"});
+  }
+  localStorage.setItem(key,JSON.stringify(items));
+  location.replace("/admin/dashboard/#inquiries");
+})();
+</script>

@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Admin Dashboard | Safe Bee Tours</title>
+<script>
+(function(){
+  var loginUrl=location.protocol==="file:"?"../login/index.html":"/admin/login/";
+  if(sessionStorage.getItem("safeBeeAdminAuthenticated")!=="true")location.replace(loginUrl);
+})();
+</script>
+<link rel="icon" href="../../LOGO.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#171713;--soft:#5e5b52;--muted:#7b776d;--line:#e5ded0;--line-strong:#d8cdbb;--paper:#fffdf8;--ivory:#f7f3e8;--field:#fffaf1;--gold:#f0b90b;--gold-soft:#fff3c4;--green:#1f9d56;--green-soft:#e8f7ee;--red:#b42318;--red-soft:#fff0ee;--blue:#2563eb;--blue-soft:#eff5ff;--shadow:0 18px 46px rgba(44,39,27,.08);--serif:"Cormorant Garamond",Georgia,serif;--sans:"Jost",system-ui,sans-serif}
+*{box-sizing:border-box;margin:0}
+html{min-height:100%;background:var(--ivory)}
+body{min-height:100vh;overflow-x:hidden;font-family:var(--sans);color:var(--ink);background:var(--ivory);line-height:1.5;font-size:16px}
+body.drawer-open,body.modal-open{overflow:hidden}
+a{color:inherit}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid rgba(240,185,11,.55);outline-offset:3px}
+.app{display:grid;grid-template-columns:280px minmax(0,1fr);min-height:100vh}
+.sidebar{position:sticky;top:0;height:100vh;display:grid;grid-template-rows:auto 1fr auto;gap:22px;padding:22px 16px;background:#171713;color:#f8f0df;border-right:1px solid rgba(255,255,255,.08);z-index:40}
+.brand{display:flex;align-items:center;gap:11px;padding:5px 8px;text-decoration:none;font-family:var(--serif);font-size:25px;font-weight:700}
+.brand img{width:42px;height:42px;border-radius:50%;object-fit:cover;object-position:center 46%;background:#fff;padding:3px}
+.nav{display:grid;align-content:start;gap:6px}
+.nav button{display:flex;align-items:center;gap:10px;width:100%;border:0;border-radius:10px;background:transparent;color:#d9d2c4;padding:11px 12px;text-align:left;font-weight:600;transition:background .15s,color .15s,transform .15s}
+.nav button:hover,.nav button.active{background:rgba(240,185,11,.12);color:#fff}
+.nav button.active{box-shadow:inset 3px 0 0 var(--gold)}
+.nav svg{width:18px;height:18px;color:var(--gold)}
+.sidebar-foot{display:grid;gap:12px;padding:12px 8px;color:#bfb6a4;font-size:13px}
+.sidebar-foot a{color:#fff;text-decoration:none}
+.sidebar-foot button{border:1px solid rgba(255,255,255,.16);border-radius:10px;background:rgba(255,255,255,.06);color:#fff;padding:10px 12px;font-weight:700}
+.workspace{min-width:0;padding:24px 28px 44px}
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;margin:-24px -28px 24px;padding:16px 28px;background:rgba(247,243,232,.88);backdrop-filter:blur(12px);border-bottom:1px solid rgba(216,205,187,.75)}
+.mobile-menu{display:none;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid var(--line);border-radius:10px;background:var(--paper)}
+.top-title strong{display:block;font-family:var(--serif);font-size:26px;line-height:1}
+.top-title span{color:var(--muted);font-size:13px}
+.top-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;background:var(--paper);padding:8px 12px;color:#534f46;font-size:13px;font-weight:600}
+.pill::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green)}
+.view-site{display:inline-flex;align-items:center;gap:8px;text-decoration:none;border:1px solid var(--line);border-radius:10px;background:var(--paper);padding:10px 13px;font-weight:700}
+.panel{display:none;animation:fadeIn .18s ease}
+.panel.active{display:block}
+@keyframes fadeIn{from{opacity:.55;transform:translateY(4px)}to{opacity:1;transform:none}}
+.page-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:22px}
+.page-kicker{display:block;margin-bottom:5px;color:#8a6a05;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+h1{font-family:var(--serif);font-size:46px;line-height:1;font-weight:600}
+.page-head p{max-width:620px;margin-top:8px;color:var(--soft)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:10px;background:var(--ink);color:#fff;padding:11px 15px;font-weight:800;text-decoration:none;transition:transform .15s,box-shadow .15s,background .15s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 12px 24px rgba(23,23,19,.14);background:#282820}
+.btn.secondary{border:1px solid var(--line);background:var(--paper);color:var(--ink)}
+.btn.secondary:hover{box-shadow:none;background:#fff}
+.btn.success{background:var(--green)}
+.btn.danger{background:var(--red)}
+.btn:disabled{opacity:.55;cursor:not-allowed;transform:none;box-shadow:none}
+.icon-btn{display:inline-grid;place-items:center;width:38px;height:38px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink)}
+.surface{background:var(--paper);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow)}
+.surface-pad{padding:18px}
+.stat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:20px}
+.stat{padding:18px;background:var(--paper);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow)}
+.stat span{color:var(--muted);font-size:13px;font-weight:700}
+.stat strong{display:block;margin-top:8px;font-size:34px;line-height:1}
+.split-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+.section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.section-title h2{font-size:18px}
+.toolbar{display:grid;grid-template-columns:minmax(220px,1.3fr) repeat(3,minmax(150px,.55fr)) auto;gap:10px;margin-bottom:16px}
+.gallery-toolbar{grid-template-columns:minmax(220px,1fr) minmax(145px,.45fr) minmax(145px,.45fr) auto}
+.search-field{position:relative}
+.search-field svg{position:absolute;left:12px;top:50%;width:18px;height:18px;transform:translateY(-50%);color:#918a7d}
+.search-field input{padding-left:38px}
+input,select,textarea{width:100%;border:1.5px solid var(--line-strong);border-radius:10px;background:#fff;padding:11px 12px;color:var(--ink);transition:border-color .15s,box-shadow .15s}
+textarea{min-height:94px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:0;border-color:#b98c07;box-shadow:0 0 0 4px rgba(240,185,11,.18)}
+.lead-list{display:grid;gap:10px}
+.lead-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center;padding:15px;border:1px solid var(--line);border-radius:12px;background:#fff;transition:border-color .15s,box-shadow .15s,transform .15s}
+.lead-row:hover{border-color:#d0bd8a;box-shadow:0 12px 26px rgba(44,39,27,.08);transform:translateY(-1px)}
+.lead-name{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.lead-name strong{font-size:18px}
+.lead-meta{margin-top:4px;color:var(--soft);font-size:14px}
+.tag-list{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}
+.tag{display:inline-flex;align-items:center;border:1px solid #e6dcc8;border-radius:999px;background:#fffaf0;padding:4px 9px;color:#5a513d;font-size:12px;font-weight:700}
+.row-actions{display:flex;align-items:center;gap:10px}
+.status-badge{display:inline-flex;align-items:center;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:800}
+.status-new{background:var(--blue-soft);color:#1d4ed8}.status-contacted{background:var(--gold-soft);color:#785f08}.status-planning{background:#eef2ff;color:#4338ca}.status-confirmed{background:var(--green-soft);color:#176c3a}.status-archived{background:#f0efeb;color:#6c675e}.status-pending{background:var(--gold-soft);color:#725504}.status-approved{background:var(--green-soft);color:#176c3a}
+.link-btn{border:0;background:transparent;color:#6e5200;font-weight:800;padding:7px 0}
+.empty{display:grid;place-items:center;min-height:220px;padding:28px;text-align:center;color:var(--muted);border:1.5px dashed #d8cdbb;border-radius:12px;background:#fffaf0}
+.empty strong{display:block;color:var(--ink);font-size:18px;margin-bottom:5px}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.media-card{position:relative;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 12px 28px rgba(44,39,27,.07);transition:transform .15s,box-shadow .15s,border-color .15s}
+.media-card:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(44,39,27,.12);border-color:#d2bd87}
+.media-thumb{position:relative;aspect-ratio:4/5;background:#eee7d8;overflow:hidden}
+.media-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.media-status{position:absolute;left:10px;top:10px}
+.media-check{position:absolute;right:10px;top:10px;display:none}
+.selecting .media-check{display:block}
+.media-check input{width:22px;height:22px;accent-color:var(--ink)}
+.media-body{display:grid;gap:9px;padding:13px}
+.media-title{min-width:0}
+.media-title strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.media-title span{display:block;color:var(--muted);font-size:12px;font-weight:700}
+.media-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.media-actions .full{grid-column:1/-1}
+.media-actions button,.media-actions select{min-height:36px;padding:8px 9px;border-radius:9px;font-size:13px}
+.media-actions button{border:1px solid var(--line);background:var(--paper);font-weight:800}
+.media-actions button.danger{color:var(--red);background:var(--red-soft);border-color:#f0c8c3}
+.bulkbar{display:none;align-items:center;justify-content:space-between;gap:12px;margin:-4px 0 14px;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff9e7}
+.bulkbar.show{display:flex}
+.drawer,.modal{position:fixed;inset:0;z-index:80;display:none;background:rgba(23,23,19,.42)}
+.drawer.open,.modal.open{display:block}
+.drawer-panel{position:absolute;right:0;top:0;height:100%;width:min(560px,100%);overflow:auto;background:var(--paper);box-shadow:-24px 0 64px rgba(0,0,0,.2);animation:slideIn .18s ease}
+@keyframes slideIn{from{transform:translateX(30px);opacity:.5}to{transform:none;opacity:1}}
+.drawer-head{position:sticky;top:0;z-index:2;display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:22px;border-bottom:1px solid var(--line);background:rgba(255,253,248,.96);backdrop-filter:blur(10px)}
+.drawer-head h2{font-family:var(--serif);font-size:36px;line-height:1}
+.drawer-content{display:grid;gap:18px;padding:22px}
+.detail-block{border:1px solid var(--line);border-radius:12px;background:#fff;padding:15px}
+.detail-block h3{margin-bottom:10px;color:#74603b;font-size:12px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.detail-grid div span{display:block;color:var(--muted);font-size:12px;font-weight:700}
+.detail-grid div strong{display:block;margin-top:3px}
+.drawer-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.drawer-actions .full{grid-column:1/-1}
+.modal-dialog{position:absolute;left:50%;top:50%;width:min(720px,calc(100% - 28px));max-height:calc(100vh - 28px);overflow:auto;transform:translate(-50%,-50%);background:var(--paper);border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,.28);animation:modalIn .17s ease}
+@keyframes modalIn{from{opacity:.5;transform:translate(-50%,-48%)}to{opacity:1;transform:translate(-50%,-50%)}}
+.modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:20px 22px;border-bottom:1px solid var(--line)}
+.modal-head h2{font-family:var(--serif);font-size:34px;line-height:1}
+.modal-body{display:grid;gap:16px;padding:20px 22px 22px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{display:grid;gap:6px}
+.field.full{grid-column:1/-1}
+label{font-size:13px;font-weight:800}
+.drop-zone{display:grid;place-items:center;min-height:170px;padding:24px;border:1.5px dashed #cdbd92;border-radius:12px;background:#fffaf0;text-align:center;transition:border-color .15s,background .15s}
+.drop-zone.dragover{border-color:var(--green);background:#effaf3}
+.drop-zone strong{display:block;font-size:18px}
+.drop-zone span{display:block;margin-top:6px;color:var(--muted)}
+.preview-list{display:grid;gap:10px}
+.preview-item{display:grid;grid-template-columns:62px 1fr auto;gap:12px;align-items:center;border:1px solid var(--line);border-radius:10px;background:#fff;padding:8px}
+.preview-item img{width:62px;height:74px;object-fit:cover;border-radius:8px;background:#eee}
+.preview-item strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.progress{height:7px;margin-top:7px;border-radius:999px;background:#eee7d8;overflow:hidden}
+.progress span{display:block;height:100%;width:0;background:var(--green);transition:width .2s}
+.status-line{display:none;border-radius:10px;padding:11px 12px;font-size:14px}
+.status-line.error{display:block;border:1px solid #f0c8c3;background:var(--red-soft);color:var(--red)}
+.status-line.ok{display:block;border:1px solid #bee4cd;background:var(--green-soft);color:#176c3a}
+.confirm-dialog{width:min(430px,calc(100% - 28px))}
+.placeholder-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.readonly-card{overflow:hidden;background:var(--paper);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow)}
+.readonly-card img{width:100%;aspect-ratio:16/11;object-fit:cover;display:block}
+.readonly-card div{padding:14px}
+.readonly-card strong{display:block;font-size:17px}
+.readonly-card span{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.toast{position:fixed;right:20px;bottom:20px;z-index:100;display:none;max-width:360px;border:1px solid #bee4cd;border-radius:12px;background:#effaf3;color:#176c3a;padding:13px 15px;box-shadow:0 16px 38px rgba(0,0,0,.14);font-weight:700}
+.toast.show{display:block}
+.sidebar-overlay{display:none}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+@media (max-width:1180px){.stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.gallery-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.toolbar,.gallery-toolbar{grid-template-columns:1fr 1fr}.toolbar .search-field,.gallery-toolbar .search-field{grid-column:1/-1}.split-grid{grid-template-columns:1fr}.placeholder-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:820px){.app{grid-template-columns:1fr}.sidebar{position:fixed;left:0;top:0;bottom:0;width:min(310px,88vw);height:auto;transform:translateX(-104%);transition:transform .18s ease}.sidebar.open{transform:none}.sidebar-overlay{position:fixed;inset:0;z-index:35;display:none;background:rgba(23,23,19,.42)}.sidebar-overlay.show{display:block}.workspace{padding:18px 16px 36px}.topbar{margin:-18px -16px 20px;padding:13px 16px}.mobile-menu{display:inline-flex}.top-title strong{font-size:23px}h1{font-size:38px}.page-head{display:grid}.stat-grid,.toolbar,.gallery-toolbar,.form-grid,.detail-grid,.drawer-actions,.placeholder-grid{grid-template-columns:1fr}.gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.lead-row{grid-template-columns:1fr}.row-actions{justify-content:space-between}.bulkbar{display:none}.bulkbar.show{display:grid}.drawer-panel{width:100%}}
+@media (max-width:520px){.top-actions .pill,.view-site{display:none}.gallery-grid{grid-template-columns:1fr}.media-actions{grid-template-columns:1fr}.modal-dialog{width:calc(100% - 18px)}.preview-item{grid-template-columns:54px 1fr}.preview-item img{width:54px;height:64px}.preview-item .icon-btn{grid-column:1/-1;width:100%}}
+</style>
+<link rel="stylesheet" href="destinations.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar" id="sidebar" aria-label="Admin navigation">
+    <a class="brand" href="../../index.html"><img src="../../LOGO.png" alt="">Safe Bee Tours</a>
+    <nav class="nav">
+      <button class="active" type="button" data-panel="dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 13h7V4H4zM13 20h7V4h-7zM4 20h7v-5H4z"/></svg>Dashboard</button>
+      <button type="button" data-panel="inquiries"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a4 4 0 0 1-4 4H7l-4 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/></svg>Inquiries</button>
+      <button type="button" data-panel="gallery"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 6"/></svg>Gallery</button>
+      <button type="button" data-panel="destinations"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s7-5.3 7-12a7 7 0 1 0-14 0c0 6.7 7 12 7 12z"/><circle cx="12" cy="9" r="2"/></svg>Destinations</button>
+      <button type="button" data-panel="tours"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 6h16M4 12h16M4 18h10"/><path d="m17 18 2 2 4-4"/></svg>Tours</button>
+      <button type="button" data-panel="testimonials"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m12 3 2.9 5.9 6.5.9-4.7 4.6 1.1 6.4-5.8-3-5.8 3 1.1-6.4-4.7-4.6 6.5-.9z"/></svg>Testimonials</button>
+      <button type="button" data-panel="messages"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16v12H7l-3 3z"/><path d="M8 9h8M8 13h5"/></svg>Messages</button>
+      <button type="button" data-panel="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.1 2.1-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V20h-3v-.1a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1-2.1-2.1.1-.1A1.7 1.7 0 0 0 5 14.7a1.7 1.7 0 0 0-1.5-1H3v-3h.5A1.7 1.7 0 0 0 5 9.7a1.7 1.7 0 0 0-.3-1.9l-.1-.1 2.1-2.1.1.1A1.7 1.7 0 0 0 8.7 6a1.7 1.7 0 0 0 1-1.5V4h3v.5a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1 2.1 2.1-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.5 1h.1v3h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>Settings</button>
+    </nav>
+    <div class="sidebar-foot">
+      <span>Private workspace</span>
+      <a href="../../index.html">Open public website</a>
+      <button type="button" id="logoutButton">Sign out</button>
+    </div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <main class="workspace">
+    <header class="topbar">
+      <button class="mobile-menu" id="mobileMenu" type="button" aria-label="Open admin navigation"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <div class="top-title"><strong id="topTitle">Dashboard</strong><span id="topSubtitle">Business overview</span></div>
+      <div class="top-actions"><span class="pill">Signed in</span><a class="view-site" href="../../index.html">View site</a></div>
+    </header>
+
+    <section class="panel active" data-panel-content="dashboard">
+      <div class="page-head">
+        <div><span class="page-kicker">Dashboard</span><h1>Business overview</h1><p>Track new leads, traveller photos and site content from one private workspace.</p></div>
+        <button class="btn" type="button" data-panel-jump="inquiries">Review inquiries</button>
+      </div>
+      <div class="stat-grid" id="statsGrid"></div>
+      <div class="split-grid">
+        <section class="surface surface-pad">
+          <div class="section-title"><h2>Recent inquiries</h2><button class="link-btn" type="button" data-panel-jump="inquiries">View all</button></div>
+          <div class="lead-list" id="recentInquiries"></div>
+        </section>
+        <section class="surface surface-pad">
+          <div class="section-title"><h2>Gallery queue</h2><button class="link-btn" type="button" data-panel-jump="gallery">Manage photos</button></div>
+          <div id="galleryQueue"></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="panel" data-panel-content="inquiries">
+      <div class="page-head">
+        <div><span class="page-kicker">Inquiries</span><h1>Travel leads <span id="newInquiryCount" class="status-badge status-new">0 New</span></h1><p>Search, qualify and reply to customer trip requests without the old letter-style layout.</p></div>
+      </div>
+      <div class="toolbar">
+        <label class="search-field"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></svg><input id="inquirySearch" type="search" placeholder="Search name, country, phone or interest"></label>
+        <select id="inquiryStatusFilter" aria-label="Filter inquiries by status"></select>
+        <select id="inquiryDateFilter" aria-label="Filter inquiries by date"><option value="all">Any date</option><option value="today">Today</option><option value="7">Last 7 days</option><option value="30">Last 30 days</option></select>
+        <select id="inquirySort" aria-label="Sort inquiries"><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="arrival">Arrival date</option><option value="status">Status</option></select>
+        <button class="btn secondary" id="clearInquiryFilters" type="button">Clear</button>
+      </div>
+      <div class="lead-list" id="inquiryList"></div>
+    </section>
+
+    <section class="panel" data-panel-content="gallery">
+      <div class="page-head">
+        <div><span class="page-kicker">Gallery</span><h1>Gallery</h1><p>Manage your travel photos and website gallery.</p></div>
+        <button class="btn" id="openPhotoModal" type="button">Add photos</button>
+      </div>
+      <div class="toolbar gallery-toolbar">
+        <label class="search-field"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></svg><input id="gallerySearch" type="search" placeholder="Search photos"></label>
+        <select id="galleryCategoryFilter" aria-label="Filter gallery by category"></select>
+        <select id="gallerySort" aria-label="Sort gallery"><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="title">Title</option><option value="status">Status</option></select>
+        <button class="btn secondary" id="selectModeButton" type="button">Select mode</button>
+      </div>
+      <div class="bulkbar" id="bulkBar"><strong id="selectedCount">0 selected</strong><div><button class="btn secondary" id="bulkApprove" type="button">Approve</button> <button class="btn danger" id="bulkDelete" type="button">Delete</button></div></div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </section>
+
+    <section class="panel" data-panel-content="destinations">
+      <div class="destination-admin">
+        <div class="page-head">
+          <div><span class="page-kicker">Destinations</span><h1>Destinations</h1><p>Create, publish and organize destination pages, galleries, maps and tour plans from one private workspace.</p></div>
+          <div class="destination-actions"><button class="btn" id="addDestinationButton" type="button">+ Add Destination</button></div>
+        </div>
+        <div class="destination-toolbar">
+          <label class="search-field"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></svg><input id="destinationSearch" type="search" placeholder="Search destinations"></label>
+          <select id="destinationStatusFilter" aria-label="Filter destinations by status"><option value="all">All</option><option value="published">Published</option><option value="draft">Draft</option><option value="unpublished">Unpublished</option></select>
+          <select id="destinationSort" aria-label="Sort destinations"><option value="custom">Custom order</option><option value="newest">Newest</option><option value="oldest">Oldest</option><option value="az">Name A-Z</option><option value="za">Name Z-A</option></select>
+          <button class="btn secondary" id="resetDestinationFilters" type="button">Clear</button>
+        </div>
+        <div class="skeleton-grid" id="destinationSkeleton"><div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div></div>
+        <div class="destination-grid" id="destinationCards"></div>
+      </div>
+    </section>
+
+    <section class="panel" data-panel-content="tours">
+      <div class="page-head"><div><span class="page-kicker">Tours</span><h1>Tours</h1><p>Search every tour plan across destinations. Edit the parent destination to manage plan details, itinerary, images and publishing.</p></div></div>
+      <div class="destination-toolbar">
+        <label class="search-field"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></svg><input id="planSearch" type="search" placeholder="Search plans, destinations or duration"></label>
+        <select id="planStatusFilter" aria-label="Filter plans by status"><option value="all">All plans</option><option value="published">Published</option><option value="draft">Draft</option><option value="unpublished">Unpublished</option></select>
+        <select id="planSort" aria-label="Sort plans"><option value="destination">Destination order</option><option value="az">Name A-Z</option><option value="za">Name Z-A</option></select>
+        <button class="btn secondary" id="resetPlanFilters" type="button">Clear</button>
+      </div>
+      <div class="placeholder-grid" id="tourCards"></div>
+    </section>
+
+    <section class="panel" data-panel-content="testimonials">
+      <div class="page-head"><div><span class="page-kicker">Testimonials</span><h1>Testimonials</h1><p>No testimonial records are connected in this static project yet.</p></div></div>
+      <div class="empty"><div><strong>No testimonials yet.</strong><span>Add a testimonial data source later without changing the public inquiry or gallery logic.</span></div></div>
+    </section>
+
+    <section class="panel" data-panel-content="messages">
+      <div class="page-head"><div><span class="page-kicker">Messages</span><h1>Messages</h1><p>WhatsApp remains the primary customer conversation channel.</p></div><a class="btn success" href="https://wa.me/94761294204" target="_blank" rel="noopener">Open WhatsApp</a></div>
+      <div class="surface surface-pad"><div class="detail-grid"><div><span>Business WhatsApp</span><strong>+94 76 129 4204</strong></div><div><span>Inquiry action</span><strong>Reply on WhatsApp from lead detail</strong></div></div></div>
+    </section>
+
+    <section class="panel" data-panel-content="settings">
+      <div class="page-head"><div><span class="page-kicker">Settings</span><h1>Settings</h1><p>Session and local static-site data controls.</p></div></div>
+      <div class="split-grid">
+        <section class="surface surface-pad"><div class="section-title"><h2>Session</h2></div><p>Signed in for this browser session.</p><p style="margin-top:8px;color:var(--muted)">Started: <span id="sessionStarted">Unknown</span></p><button class="btn danger" type="button" id="settingsLogout" style="margin-top:16px">Sign out</button></section>
+        <section class="surface surface-pad"><div class="section-title"><h2>Local data</h2></div><p>Gallery uploads and inquiry records are stored in this browser because the project has no backend database layer.</p><button class="btn secondary" type="button" id="exportData" style="margin-top:16px">Export JSON</button></section>
+      </div>
+    </section>
+  </main>
+</div>
+
+<aside class="drawer" id="inquiryDrawer" aria-hidden="true">
+  <div class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+    <div class="drawer-head">
+      <div><h2 id="drawerTitle">Inquiry</h2><p id="drawerSubtitle"></p></div>
+      <button class="icon-btn" id="closeInquiryDrawer" type="button" aria-label="Close inquiry detail">&times;</button>
+    </div>
+    <div class="drawer-content" id="inquiryDetail"></div>
+  </div>
+</aside>
+
+<div class="modal" id="photoModal" aria-hidden="true">
+  <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="photoModalTitle">
+    <div class="modal-head">
+      <div><h2 id="photoModalTitle">Add photos</h2><p>Upload approved gallery images for the public website.</p></div>
+      <button class="icon-btn" id="closePhotoModal" type="button" aria-label="Close photo uploader">&times;</button>
+    </div>
+    <form class="modal-body" id="photoForm">
+      <div class="drop-zone" id="dropZone" tabindex="0">
+        <div><strong>Drag &amp; drop images here</strong><span>or browse from your computer</span><button class="btn secondary" id="browsePhotos" type="button" style="margin-top:14px">Browse from computer</button></div>
+      </div>
+      <input id="photoFiles" type="file" accept="image/*" multiple hidden>
+      <div class="preview-list" id="photoPreview"></div>
+      <div class="form-grid">
+        <div class="field"><label for="photoCategory">Category</label><select id="photoCategory" name="photoCategory"></select></div>
+        <div class="field"><label for="photoTitle">Title</label><input id="photoTitle" name="photoTitle" placeholder="Optional shared title"></div>
+        <div class="field full"><label for="photoCaption">Description</label><textarea id="photoCaption" name="photoCaption" placeholder="Optional caption for these photos"></textarea></div>
+      </div>
+      <div class="status-line" id="photoStatus" role="status" aria-live="polite"></div>
+      <button class="btn success" id="uploadPhotos" type="submit">Upload photos</button>
+    </form>
+  </div>
+</div>
+
+<div class="modal" id="editPhotoModal" aria-hidden="true">
+  <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="editPhotoTitle">
+    <div class="modal-head">
+      <div><h2 id="editPhotoTitle">Edit photo</h2><p>Update gallery metadata.</p></div>
+      <button class="icon-btn" id="closeEditPhotoModal" type="button" aria-label="Close edit photo">&times;</button>
+    </div>
+    <form class="modal-body" id="editPhotoForm">
+      <input id="editPhotoId" type="hidden">
+      <div class="form-grid">
+        <div class="field"><label for="editPhotoName">Title</label><input id="editPhotoName" required></div>
+        <div class="field"><label for="editPhotoCategory">Category</label><select id="editPhotoCategory"></select></div>
+        <div class="field"><label for="editPhotoStatus">Status</label><select id="editPhotoStatus"><option>approved</option><option>pending</option></select></div>
+        <div class="field full"><label for="editPhotoCaption">Description</label><textarea id="editPhotoCaption"></textarea></div>
+      </div>
+      <div class="status-line" id="editPhotoStatusLine" role="status" aria-live="polite"></div>
+      <button class="btn" type="submit">Save changes</button>
+    </form>
+  </div>
+</div>
+
+<div class="modal editor-modal" id="destinationEditorModal" aria-hidden="true">
+  <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="destinationEditorTitle">
+    <div class="modal-head">
+      <div><h2 id="destinationEditorTitle">Destination</h2><p id="destinationEditorSubtitle">Manage destination content, tour plans, gallery, location and publishing.</p></div>
+      <button class="icon-btn" id="closeDestinationEditor" type="button" aria-label="Close destination editor">&times;</button>
+    </div>
+    <div class="modal-body" id="destinationEditorBody"></div>
+  </div>
+</div>
+
+<div class="modal" id="confirmModal" aria-hidden="true">
+  <div class="modal-dialog confirm-dialog" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+    <div class="modal-head"><div><h2 id="confirmTitle">Confirm action</h2><p id="confirmText"></p></div></div>
+    <div class="modal-body">
+      <div style="display:flex;justify-content:flex-end;gap:10px"><button class="btn secondary" id="cancelConfirm" type="button">Cancel</button><button class="btn danger" id="confirmAction" type="button">Confirm</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  var AUTH_KEY="safeBeeAdminAuthenticated";
+  var AUTH_TIME_KEY="safeBeeAdminAuthenticatedAt";
+  var GALLERY_KEY="safeBeeGalleryItems";
+  var INQUIRY_KEY="safeBeeInquiries";
+  var NUMBER="94761294204";
+  var STATUSES=["New","Contacted","Planning","Confirmed","Archived"];
+  var CATEGORIES=["Culture","Wildlife","Hill Country","Beaches","East Coast","Customers","Safe Bee Team"];
+  var SEED_GALLERY=[
+    {id:"seed-sigiriya",title:"Sigiriya memories",caption:"Cultural routes with Safe Bee Tours.",src:"../../images/sigiriya-1.jpg",status:"approved",source:"seed",category:"Culture",locked:true,createdAt:"2025-01-01T00:00:00.000Z"},
+    {id:"seed-kandy",title:"Kandy moments",caption:"Temple city stops and relaxed hill-country days.",src:"../../images/kandy-1.jpg",status:"approved",source:"seed",category:"Culture",locked:true,createdAt:"2025-01-02T00:00:00.000Z"},
+    {id:"seed-ella",title:"Ella views",caption:"Tea hills, bridges and mountain air.",src:"../../images/ella-1.jpg",status:"approved",source:"seed",category:"Hill Country",locked:true,createdAt:"2025-01-03T00:00:00.000Z"}
+  ];
+  var PLANS=[
+    {title:"Sigiriya & Cultural Triangle",tag:"Culture & Heritage",days:"2 Days / 1 Night",image:"../../images/sigiriya.jpg",desc:"Lion Rock, Dambulla and ancient heritage routes."},
+    {title:"Kandy",tag:"Culture & Nature",days:"1 Day",image:"../../images/kandy.jpg",desc:"Temple of the Tooth, gardens and Kandy Lake."},
+    {title:"Ella & Hill Country",tag:"Tea Hills & Scenic Views",days:"2 Days / 1 Night",image:"../../images/ella.jpg",desc:"Tea country, bridges and mountain viewpoints."},
+    {title:"Galle & South Coast",tag:"Beaches & Heritage",days:"1 Day",image:"../../images/galle.jpg",desc:"Galle Fort, coastline and beach time."},
+    {title:"Yala & Udawalawe",tag:"Wildlife Safari",days:"2 Days / 1 Night",image:"../../images/yala.jpg",desc:"Southern wildlife routes and safari planning."},
+    {title:"Trincomalee & East Coast",tag:"East Coast",days:"2 Days / 1 Night",image:"../../images/trincomalee.jpg",desc:"Clear water, coastal sightseeing and island trips."}
+  ];
+  var currentInquiryId=null,selectedGallery=new Set(),selectMode=false,uploadFiles=[],confirmCallback=null;
+
+  function $(id){return document.getElementById(id)}
+  function esc(s){return String(s||"").replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]})}
+  function getJSON(key,fallback){try{var raw=localStorage.getItem(key);return raw?JSON.parse(raw):fallback}catch(err){return fallback}}
+  function setJSON(key,value){localStorage.setItem(key,JSON.stringify(value))}
+  function getInquiries(){return getJSON(INQUIRY_KEY,[])}
+  function saveInquiries(items){setJSON(INQUIRY_KEY,items)}
+  function getStoredGallery(){return getJSON(GALLERY_KEY,[])}
+  function saveStoredGallery(items){setJSON(GALLERY_KEY,items)}
+  function allGallery(){return SEED_GALLERY.concat(getStoredGallery().map(function(item){item.category=item.category||inferCategory(item);return item}))}
+  function inferCategory(item){if(item.source==="customer")return "Customers";if(/yala|wild/i.test(item.title||""))return "Wildlife";if(/ella|tea/i.test(item.title||""))return "Hill Country";if(/galle|beach/i.test(item.title||""))return "Beaches";return "Safe Bee Team"}
+  function statusClass(status){return "status-"+String(status||"").toLowerCase().replace(/\s+/g,"-")}
+  function formatDate(value){if(!value)return "Not set";try{return new Intl.DateTimeFormat("en",{day:"numeric",month:"short",year:"numeric"}).format(new Date(value.length===10?value+"T00:00:00":value))}catch(err){return value}}
+  function formatDateTime(value){if(!value)return "Unknown";try{return new Intl.DateTimeFormat("en",{day:"numeric",month:"short",hour:"numeric",minute:"2-digit"}).format(new Date(value))}catch(err){return value}}
+  function cleanPhone(phone){return String(phone||"").replace(/[^\d]/g,"")}
+  function toast(message){var el=$("toast");el.textContent=message;el.classList.add("show");window.clearTimeout(toast.timer);toast.timer=window.setTimeout(function(){el.classList.remove("show")},2600)}
+  function openModal(el){el.classList.add("open");el.setAttribute("aria-hidden","false");document.body.classList.add("modal-open")}
+  function closeModal(el){el.classList.remove("open");el.setAttribute("aria-hidden","true");if(!document.querySelector(".modal.open"))document.body.classList.remove("modal-open")}
+  function showConfirm(title,text,callback){$("confirmTitle").textContent=title;$("confirmText").textContent=text;confirmCallback=callback;openModal($("confirmModal"))}
+
+  function initShell(){
+    document.querySelectorAll("[data-panel]").forEach(function(button){button.addEventListener("click",function(){showPanel(button.dataset.panel)})});
+    document.querySelectorAll("[data-panel-jump]").forEach(function(button){button.addEventListener("click",function(){showPanel(button.dataset.panelJump)})});
+    $("mobileMenu").addEventListener("click",function(){$("sidebar").classList.add("open");$("sidebarOverlay").classList.add("show")});
+    $("sidebarOverlay").addEventListener("click",closeSidebar);
+    $("logoutButton").addEventListener("click",logout);
+    $("settingsLogout").addEventListener("click",logout);
+    $("sessionStarted").textContent=formatDateTime(sessionStorage.getItem(AUTH_TIME_KEY));
+    var initial=(location.hash||"#dashboard").replace("#","");
+    showPanel(document.querySelector('[data-panel="'+initial+'"]')?initial:"dashboard",true);
+  }
+  function closeSidebar(){$("sidebar").classList.remove("open");$("sidebarOverlay").classList.remove("show")}
+  function showPanel(name,skipHash){
+    document.querySelectorAll("[data-panel]").forEach(function(btn){btn.classList.toggle("active",btn.dataset.panel===name)});
+    document.querySelectorAll("[data-panel-content]").forEach(function(panel){panel.classList.toggle("active",panel.dataset.panelContent===name)});
+    var labels={dashboard:["Dashboard","Business overview"],inquiries:["Inquiries","Travel lead management"],gallery:["Gallery","Media manager"],destinations:["Destinations","Public content"],tours:["Tours","Tour plans"],testimonials:["Testimonials","Guest feedback"],messages:["Messages","WhatsApp"],settings:["Settings","Workspace controls"]};
+    $("topTitle").textContent=(labels[name]||labels.dashboard)[0];
+    $("topSubtitle").textContent=(labels[name]||labels.dashboard)[1];
+    closeSidebar();
+    if(!skipHash)history.replaceState(null,"","#"+name);
+  }
+  function logout(){
+    sessionStorage.removeItem(AUTH_KEY);
+    sessionStorage.removeItem(AUTH_TIME_KEY);
+    location.replace(location.protocol==="file:"?"../login/index.html":"/admin/login/");
+  }
+
+  function renderStats(){
+    var inquiries=getInquiries(),gallery=getStoredGallery();
+    var newCount=inquiries.filter(function(item){return item.status==="New"}).length;
+    var pending=gallery.filter(function(item){return item.status==="pending"}).length;
+    var approved=gallery.filter(function(item){return item.status==="approved"}).length+SEED_GALLERY.length;
+    $("statsGrid").innerHTML=[
+      ["New inquiries",newCount],
+      ["Active leads",inquiries.filter(function(item){return item.status!=="Archived"}).length],
+      ["Pending photos",pending],
+      ["Approved photos",approved]
+    ].map(function(stat){return '<article class="stat"><span>'+esc(stat[0])+'</span><strong>'+stat[1]+'</strong></article>'}).join("");
+    $("newInquiryCount").textContent=newCount+" New";
+    renderRecent(inquiries);
+    renderGalleryQueue(gallery);
+  }
+  function renderRecent(inquiries){
+    var recent=inquiries.slice(0,4);
+    $("recentInquiries").innerHTML=recent.length?recent.map(leadMarkup).join(""):'<div class="empty"><div><strong>No inquiries yet.</strong><span>Public trip requests will appear here after a visitor submits the form.</span></div></div>';
+  }
+  function renderGalleryQueue(items){
+    var pending=items.filter(function(item){return item.status==="pending"}).slice(0,4);
+    $("galleryQueue").innerHTML=pending.length?pending.map(function(item){return '<article class="lead-row"><div class="lead-name"><strong>'+esc(item.title||"Customer photo")+'</strong><span class="status-badge status-pending">Pending</span></div><button class="link-btn" type="button" data-panel-jump="gallery">Review</button></article>'}).join(""):'<div class="empty"><div><strong>No pending photos.</strong><span>Customer uploads are clear.</span></div></div>';
+  }
+
+  function populateStatusFilter(){
+    $("inquiryStatusFilter").innerHTML='<option value="all">All statuses</option>'+STATUSES.map(function(status){return '<option value="'+esc(status)+'">'+esc(status)+'</option>'}).join("");
+  }
+  function passesDateFilter(lead,filter){
+    if(filter==="all")return true;
+    var created=lead.createdAt?new Date(lead.createdAt):null;
+    if(!created||isNaN(created))return false;
+    var now=new Date();
+    if(filter==="today")return created.toDateString()===now.toDateString();
+    return now-created<=Number(filter)*24*60*60*1000;
+  }
+  function filteredInquiries(){
+    var query=$("inquirySearch").value.trim().toLowerCase(),status=$("inquiryStatusFilter").value,date=$("inquiryDateFilter").value,sort=$("inquirySort").value;
+    var items=getInquiries().filter(function(lead){
+      var hay=[lead.name,lead.country,lead.phone,lead.email,(lead.interests||[]).join(" "),lead.message].join(" ").toLowerCase();
+      return (!query||hay.indexOf(query)>-1)&&(status==="all"||lead.status===status)&&passesDateFilter(lead,date);
+    });
+    items.sort(function(a,b){
+      if(sort==="oldest")return new Date(a.createdAt||0)-new Date(b.createdAt||0);
+      if(sort==="arrival")return String(a.arrive||"9999").localeCompare(String(b.arrive||"9999"));
+      if(sort==="status")return String(a.status||"").localeCompare(String(b.status||""));
+      return new Date(b.createdAt||0)-new Date(a.createdAt||0);
+    });
+    return items;
+  }
+  function leadMarkup(lead){
+    var interests=(lead.interests||[]).slice(0,4).map(function(tag){return '<span class="tag">'+esc(tag)+'</span>'}).join("");
+    return '<article class="lead-row" data-inquiry-id="'+esc(lead.id)+'"><div><div class="lead-name"><strong>'+esc(lead.name||"Unnamed traveller")+'</strong><span class="status-badge '+statusClass(lead.status)+'">'+esc(lead.status||"New")+'</span></div><p class="lead-meta">'+esc(lead.country||"Country not set")+' · '+esc(formatDate(lead.arrive))+' · '+esc(lead.days||"?")+' days · '+esc(lead.adults||"1")+' adults · '+esc(lead.kids||"0")+' children</p><div class="tag-list">'+interests+'</div></div><div class="row-actions"><button class="link-btn" type="button" data-view-inquiry="'+esc(lead.id)+'">View inquiry →</button></div></article>';
+  }
+  function renderInquiries(){
+    var items=filteredInquiries();
+    $("inquiryList").innerHTML=items.length?items.map(leadMarkup).join(""):'<div class="empty"><div><strong>No inquiries match.</strong><span>Try a different search, status or date filter.</span></div></div>';
+    renderStats();
+  }
+  function updateInquiry(id,changes){
+    var items=getInquiries().map(function(lead){return lead.id===id?Object.assign({},lead,changes):lead});
+    saveInquiries(items);
+    renderInquiries();
+    if(currentInquiryId===id)openInquiry(id);
+  }
+  function openInquiry(id){
+    var lead=getInquiries().find(function(item){return item.id===id});
+    if(!lead)return;
+    currentInquiryId=id;
+    $("drawerTitle").textContent=lead.name||"Unnamed traveller";
+    $("drawerSubtitle").innerHTML='<span class="status-badge '+statusClass(lead.status)+'">'+esc(lead.status||"New")+'</span> Received '+esc(formatDateTime(lead.createdAt));
+    $("inquiryDetail").innerHTML=
+      '<section class="detail-block"><h3>Contact</h3><div class="detail-grid"><div><span>Phone / WhatsApp</span><strong>'+esc(lead.phone||"Not set")+'</strong></div><div><span>Email</span><strong>'+esc(lead.email||"Not set")+'</strong></div><div><span>Country</span><strong>'+esc(lead.country||"Not set")+'</strong></div><div><span>Source</span><strong>Public inquiry form</strong></div></div></section>'+
+      '<section class="detail-block"><h3>Trip details</h3><div class="detail-grid"><div><span>Arrival date</span><strong>'+esc(formatDate(lead.arrive))+'</strong></div><div><span>Number of days</span><strong>'+esc(lead.days||"Not set")+'</strong></div><div><span>Adults</span><strong>'+esc(lead.adults||"1")+'</strong></div><div><span>Children</span><strong>'+esc(lead.kids||"0")+'</strong></div></div></section>'+
+      '<section class="detail-block"><h3>Interests</h3><div class="tag-list">'+((lead.interests||[]).length?(lead.interests||[]).map(function(tag){return '<span class="tag">'+esc(tag)+'</span>'}).join(""):'<span class="tag">Not specified</span>')+'</div></section>'+
+      '<section class="detail-block"><h3>Message</h3><p>'+esc(lead.message||"No additional message.")+'</p></section>'+
+      '<section class="detail-block"><h3>Actions</h3><div class="drawer-actions"><a class="btn success" id="detailWhatsApp" target="_blank" rel="noopener">Reply on WhatsApp</a><button class="btn secondary" id="markContacted" type="button">Mark as contacted</button><select class="full" id="detailStatus">'+STATUSES.map(function(status){return '<option '+(status===lead.status?'selected':'')+'>'+esc(status)+'</option>'}).join("")+'</select><button class="btn danger full" id="archiveInquiry" type="button">Archive</button></div></section>';
+    var phone=cleanPhone(lead.phone);
+    var reply="Hi "+(lead.name||"there")+", thanks for your Sri Lanka trip inquiry with Safe Bee Tours. We are reviewing your request and will help plan the right route for you.";
+    $("detailWhatsApp").href="https://wa.me/"+(phone||NUMBER)+"?text="+encodeURIComponent(reply);
+    $("markContacted").onclick=function(){updateInquiry(id,{status:"Contacted"})};
+    $("archiveInquiry").onclick=function(){updateInquiry(id,{status:"Archived"})};
+    $("detailStatus").onchange=function(){updateInquiry(id,{status:this.value})};
+    $("inquiryDrawer").classList.add("open");
+    $("inquiryDrawer").setAttribute("aria-hidden","false");
+    document.body.classList.add("drawer-open");
+  }
+  function closeInquiry(){$("inquiryDrawer").classList.remove("open");$("inquiryDrawer").setAttribute("aria-hidden","true");document.body.classList.remove("drawer-open");currentInquiryId=null}
+
+  function populateCategories(){
+    var opts='<option value="all">All categories</option>'+CATEGORIES.map(function(cat){return '<option value="'+esc(cat)+'">'+esc(cat)+'</option>'}).join("");
+    $("galleryCategoryFilter").innerHTML=opts;
+    $("photoCategory").innerHTML=CATEGORIES.map(function(cat){return '<option>'+esc(cat)+'</option>'}).join("");
+    $("editPhotoCategory").innerHTML=CATEGORIES.map(function(cat){return '<option>'+esc(cat)+'</option>'}).join("");
+  }
+  function filteredGallery(){
+    var query=$("gallerySearch").value.trim().toLowerCase(),category=$("galleryCategoryFilter").value,sort=$("gallerySort").value;
+    var items=allGallery().filter(function(item){
+      var hay=[item.title,item.caption,item.category,item.status,item.source].join(" ").toLowerCase();
+      return (!query||hay.indexOf(query)>-1)&&(category==="all"||item.category===category);
+    });
+    items.sort(function(a,b){
+      if(sort==="oldest")return new Date(a.createdAt||0)-new Date(b.createdAt||0);
+      if(sort==="title")return String(a.title||"").localeCompare(String(b.title||""));
+      if(sort==="status")return String(a.status||"").localeCompare(String(b.status||""));
+      return new Date(b.createdAt||0)-new Date(a.createdAt||0);
+    });
+    return items;
+  }
+  function renderGallery(){
+    var items=filteredGallery();
+    var grid=$("galleryGrid");
+    grid.classList.toggle("selecting",selectMode);
+    grid.innerHTML=items.length?items.map(function(item){
+      var locked=!!item.locked;
+      return '<article class="media-card" data-photo-id="'+esc(item.id)+'"><div class="media-thumb"><img src="'+esc(item.src)+'" alt="'+esc(item.title||"Gallery photo")+'"><span class="media-status status-badge '+(item.status==="pending"?"status-pending":"status-approved")+'">'+esc(item.status||"approved")+'</span><label class="media-check"><input type="checkbox" data-select-photo="'+esc(item.id)+'" '+(selectedGallery.has(item.id)?"checked":"")+' '+(locked?"disabled":"")+'></label></div><div class="media-body"><div class="media-title"><strong>'+esc(item.title||"Gallery photo")+'</strong><span>'+esc(item.category||"Gallery")+'</span></div><p style="color:var(--muted);font-size:13px;min-height:38px">'+esc(item.caption||"No description.")+'</p><div class="media-actions"><button type="button" data-gallery-action="edit" data-id="'+esc(item.id)+'" '+(locked?"disabled":"")+'>Edit</button><button class="danger" type="button" data-gallery-action="delete" data-id="'+esc(item.id)+'" '+(locked?"disabled":"")+'>Delete</button><select class="full" data-gallery-category="'+esc(item.id)+'" '+(locked?"disabled":"")+'>'+CATEGORIES.map(function(cat){return '<option '+(cat===(item.category||"")?'selected':'')+'>'+esc(cat)+'</option>'}).join("")+'</select></div></div></article>';
+    }).join(""):'<div class="empty" style="grid-column:1/-1"><div><strong>No photos match.</strong><span>Try a different search, category or sort order.</span></div></div>';
+    updateBulkbar();
+    renderStats();
+  }
+  function storedPhoto(id){return getStoredGallery().find(function(item){return item.id===id})}
+  function updateStoredPhoto(id,changes){
+    var items=getStoredGallery().map(function(item){return item.id===id?Object.assign({},item,changes):item});
+    saveStoredGallery(items);
+    renderGallery();
+    renderPublicDependentViews();
+  }
+  function deleteStoredPhotos(ids){
+    var idSet=new Set(ids);
+    saveStoredGallery(getStoredGallery().filter(function(item){return !idSet.has(item.id)}));
+    ids.forEach(function(id){selectedGallery.delete(id)});
+    renderGallery();
+    renderPublicDependentViews();
+  }
+  function updateBulkbar(){
+    var bar=$("bulkBar");
+    bar.classList.toggle("show",selectMode&&selectedGallery.size>0);
+    $("selectedCount").textContent=selectedGallery.size+" selected";
+  }
+  function openEditPhoto(id){
+    var item=storedPhoto(id);
+    if(!item)return;
+    $("editPhotoId").value=item.id;
+    $("editPhotoName").value=item.title||"";
+    $("editPhotoCaption").value=item.caption||"";
+    $("editPhotoCategory").value=item.category||inferCategory(item);
+    $("editPhotoStatus").value=item.status||"approved";
+    $("editPhotoStatusLine").className="status-line";
+    openModal($("editPhotoModal"));
+  }
+
+  function resizeImageFile(file){
+    return new Promise(function(resolve,reject){
+      if(!file||!/^image\//.test(file.type)){reject(new Error("Please choose image files only."));return}
+      var reader=new FileReader();
+      reader.onerror=function(){reject(new Error("Could not read "+file.name+"."))};
+      reader.onload=function(){
+        var img=new Image();
+        img.onerror=function(){reject(new Error("Could not load "+file.name+"."))};
+        img.onload=function(){
+          var maxW=1400,maxH=1700,scale=Math.min(maxW/img.width,maxH/img.height,1);
+          var canvas=document.createElement("canvas"),ctx=canvas.getContext("2d");
+          canvas.width=Math.max(1,Math.round(img.width*scale));
+          canvas.height=Math.max(1,Math.round(img.height*scale));
+          ctx.drawImage(img,0,0,canvas.width,canvas.height);
+          resolve(canvas.toDataURL("image/jpeg",0.84));
+        };
+        img.src=reader.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+  function renderUploadPreviews(progress){
+    $("photoPreview").innerHTML=uploadFiles.map(function(file,index){
+      var url=URL.createObjectURL(file);
+      return '<div class="preview-item" data-preview-index="'+index+'"><img src="'+url+'" alt=""><div><strong>'+esc(file.name)+'</strong><small>'+Math.ceil(file.size/1024)+' KB</small><div class="progress"><span style="width:'+(progress&&progress[index]?progress[index]:0)+'%"></span></div></div><button class="icon-btn" type="button" data-remove-upload="'+index+'" aria-label="Remove '+esc(file.name)+'">&times;</button></div>';
+    }).join("");
+  }
+  function setUploadFiles(files){
+    uploadFiles=Array.prototype.filter.call(files,function(file){return /^image\//.test(file.type)});
+    renderUploadPreviews();
+    $("photoStatus").className="status-line";
+  }
+  async function uploadSelectedPhotos(event){
+    event.preventDefault();
+    var status=$("photoStatus"),button=$("uploadPhotos");
+    if(!uploadFiles.length){status.className="status-line error";status.textContent="Choose at least one image.";return}
+    button.disabled=true;
+    button.textContent="Uploading...";
+    var progress={};
+    try{
+      var current=getStoredGallery();
+      for(var i=0;i<uploadFiles.length;i++){
+        progress[i]=20;renderUploadPreviews(progress);
+        var src=await resizeImageFile(uploadFiles[i]);
+        progress[i]=75;renderUploadPreviews(progress);
+        var base=uploadFiles[i].name.replace(/\.[^.]+$/,"").replace(/[-_]+/g," ");
+        current.unshift({id:"photo-"+Date.now()+"-"+Math.random().toString(16).slice(2),title:$("photoTitle").value.trim()||base,caption:$("photoCaption").value.trim(),category:$("photoCategory").value,status:"approved",source:"admin",src:src,createdAt:new Date().toISOString()});
+        progress[i]=100;renderUploadPreviews(progress);
+      }
+      saveStoredGallery(current);
+      status.className="status-line ok";
+      status.textContent=uploadFiles.length+" photo"+(uploadFiles.length===1?"":"s")+" uploaded successfully.";
+      uploadFiles=[];
+      $("photoForm").reset();
+      window.setTimeout(function(){closeModal($("photoModal"));renderUploadPreviews();},650);
+      renderGallery();
+      renderPublicDependentViews();
+      toast("Gallery updated.");
+    }catch(err){
+      status.className="status-line error";
+      status.textContent=err.message||"Upload failed. Try smaller images.";
+    }
+    button.disabled=false;
+    button.textContent="Upload photos";
+  }
+  function renderPublicDependentViews(){
+    renderStats();
+    renderGallery();
+  }
+
+  function renderReadonly(){
+    var markup=PLANS.map(function(plan){return '<article class="readonly-card"><img src="'+esc(plan.image)+'" alt="'+esc(plan.title)+'"><div><strong>'+esc(plan.title)+'</strong><span>'+esc(plan.tag)+' · '+esc(plan.days)+'</span><p style="margin-top:8px;color:var(--soft);font-size:14px">'+esc(plan.desc)+'</p></div></article>'}).join("");
+    $("destinationCards").innerHTML=markup;
+    $("tourCards").innerHTML=markup;
+  }
+
+  function exportData(){
+    var blob=new Blob([JSON.stringify({inquiries:getInquiries(),gallery:getStoredGallery(),exportedAt:new Date().toISOString()},null,2)],{type:"application/json"});
+    var url=URL.createObjectURL(blob),a=document.createElement("a");
+    a.href=url;a.download="safe-bee-tours-local-data.json";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+  }
+
+  function bindEvents(){
+    ["inquirySearch","inquiryStatusFilter","inquiryDateFilter","inquirySort"].forEach(function(id){$(id).addEventListener("input",renderInquiries);$(id).addEventListener("change",renderInquiries)});
+    $("clearInquiryFilters").addEventListener("click",function(){$("inquirySearch").value="";$("inquiryStatusFilter").value="all";$("inquiryDateFilter").value="all";$("inquirySort").value="newest";renderInquiries()});
+    $("inquiryList").addEventListener("click",function(e){var btn=e.target.closest("[data-view-inquiry]"),row=e.target.closest("[data-inquiry-id]");if(btn)openInquiry(btn.dataset.viewInquiry);else if(row)openInquiry(row.dataset.inquiryId)});
+    $("recentInquiries").addEventListener("click",function(e){var row=e.target.closest("[data-inquiry-id]");if(row)openInquiry(row.dataset.inquiryId)});
+    $("closeInquiryDrawer").addEventListener("click",closeInquiry);
+    $("inquiryDrawer").addEventListener("click",function(e){if(e.target===$("inquiryDrawer"))closeInquiry()});
+
+    ["gallerySearch","galleryCategoryFilter","gallerySort"].forEach(function(id){$(id).addEventListener("input",renderGallery);$(id).addEventListener("change",renderGallery)});
+    $("selectModeButton").addEventListener("click",function(){selectMode=!selectMode;if(!selectMode)selectedGallery.clear();this.textContent=selectMode?"Done selecting":"Select mode";renderGallery()});
+    $("galleryGrid").addEventListener("click",function(e){
+      var action=e.target.closest("[data-gallery-action]");
+      if(!action)return;
+      var id=action.dataset.id;
+      if(action.dataset.galleryAction==="edit")openEditPhoto(id);
+      if(action.dataset.galleryAction==="delete")showConfirm("Delete photo","This photo will be removed from the managed gallery.",function(){deleteStoredPhotos([id]);toast("Photo deleted.")});
+    });
+    $("galleryGrid").addEventListener("change",function(e){
+      if(e.target.matches("[data-select-photo]")){e.target.checked?selectedGallery.add(e.target.dataset.selectPhoto):selectedGallery.delete(e.target.dataset.selectPhoto);updateBulkbar()}
+      if(e.target.matches("[data-gallery-category]")){updateStoredPhoto(e.target.dataset.galleryCategory,{category:e.target.value});toast("Category updated.")}
+    });
+    $("bulkApprove").addEventListener("click",function(){selectedGallery.forEach(function(id){updateStoredPhoto(id,{status:"approved"})});toast("Selected photos approved.")});
+    $("bulkDelete").addEventListener("click",function(){var ids=Array.from(selectedGallery);showConfirm("Delete selected photos","This will remove "+ids.length+" managed photo"+(ids.length===1?"":"s")+".",function(){deleteStoredPhotos(ids);toast("Selected photos deleted.")})});
+    $("openPhotoModal").addEventListener("click",function(){openModal($("photoModal"));$("dropZone").focus()});
+    $("closePhotoModal").addEventListener("click",function(){closeModal($("photoModal"))});
+    $("browsePhotos").addEventListener("click",function(){$("photoFiles").click()});
+    $("photoFiles").addEventListener("change",function(){setUploadFiles(this.files)});
+    $("photoPreview").addEventListener("click",function(e){var btn=e.target.closest("[data-remove-upload]");if(!btn)return;uploadFiles.splice(Number(btn.dataset.removeUpload),1);renderUploadPreviews()});
+    $("photoForm").addEventListener("submit",uploadSelectedPhotos);
+    ["dragenter","dragover"].forEach(function(type){$("dropZone").addEventListener(type,function(e){e.preventDefault();$("dropZone").classList.add("dragover")})});
+    ["dragleave","drop"].forEach(function(type){$("dropZone").addEventListener(type,function(e){e.preventDefault();$("dropZone").classList.remove("dragover")})});
+    $("dropZone").addEventListener("drop",function(e){setUploadFiles(e.dataTransfer.files)});
+    $("dropZone").addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();$("photoFiles").click()}});
+    $("closeEditPhotoModal").addEventListener("click",function(){closeModal($("editPhotoModal"))});
+    $("editPhotoForm").addEventListener("submit",function(e){e.preventDefault();updateStoredPhoto($("editPhotoId").value,{title:$("editPhotoName").value.trim()||"Gallery photo",caption:$("editPhotoCaption").value.trim(),category:$("editPhotoCategory").value,status:$("editPhotoStatus").value});$("editPhotoStatusLine").className="status-line ok";$("editPhotoStatusLine").textContent="Photo updated.";window.setTimeout(function(){closeModal($("editPhotoModal"))},450);toast("Photo updated.")});
+    document.querySelectorAll(".modal").forEach(function(modal){modal.addEventListener("click",function(e){if(e.target===modal&&modal.id!=="confirmModal")closeModal(modal)})});
+    $("cancelConfirm").addEventListener("click",function(){closeModal($("confirmModal"));confirmCallback=null});
+    $("confirmAction").addEventListener("click",function(){if(confirmCallback)confirmCallback();closeModal($("confirmModal"));confirmCallback=null});
+    $("exportData").addEventListener("click",exportData);
+    document.addEventListener("keydown",function(e){if(e.key==="Escape"){closeInquiry();document.querySelectorAll(".modal.open").forEach(closeModal);closeSidebar()}});
+  }
+
+  populateStatusFilter();
+  populateCategories();
+  initShell();
+  bindEvents();
+  renderStats();
+  renderInquiries();
+  renderGallery();
+  renderReadonly();
+})();
+</script>
+<script src="destinations.js"></script>
+</body>
+</html>

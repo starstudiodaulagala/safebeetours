@@ -1,0 +1,925 @@
+{
+  "version": 1,
+  "updatedAt": "2026-10-03T22:45:18.386Z",
+  "destinations": [
+    {
+      "id": "sigiriya",
+      "name": "Sigiriya & Cultural Triangle",
+      "shortTitle": "Ancient Heritage",
+      "slug": "sigiriya-cultural-triangle",
+      "shortDescription": "Explore ancient heritage, iconic landmarks and cultural experiences.",
+      "fullDescription": "A focused cultural journey covering the famous Lion Rock area, Dambulla Cave Temple and the ancient heritage of Sri Lanka's Cultural Triangle.",
+      "region": "Culture & Heritage",
+      "featured": true,
+      "status": "published",
+      "order": 1,
+      "archivedAt": null,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2026-10-03T22:45:18.213Z",
+      "location": {
+        "name": "Sigiriya",
+        "address": "Sigiriya, Central Province, Sri Lanka",
+        "latitude": 7.9568,
+        "longitude": 80.7603,
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Sigiriya%2C%20Sri%20Lanka",
+        "googleMapsEmbedUrl": "https://www.google.com/maps?q=Sigiriya%2C%20Sri%20Lanka&output=embed"
+      },
+      "seo": {
+        "title": "Sigiriya & Cultural Triangle Private Tour",
+        "description": "Private Sigiriya and Cultural Triangle tour plans with Safe Bee Tours."
+      },
+      "gallery": [
+        {
+          "id": "sigiriya-cover",
+          "src": "/images/sigiriya.jpg",
+          "caption": "Sigiriya and Cultural Triangle route",
+          "alt": "Sigiriya landscape",
+          "isCover": true,
+          "order": 1
+        },
+        {
+          "id": "sigiriya-1",
+          "src": "/images/sigiriya-1.jpg",
+          "caption": "Cultural route memory",
+          "alt": "Sigiriya tour photo",
+          "isCover": false,
+          "order": 2
+        },
+        {
+          "id": "sigiriya-2",
+          "src": "/images/sigiriya-2.jpg",
+          "caption": "Ancient heritage stop",
+          "alt": "Cultural Triangle photo",
+          "isCover": false,
+          "order": 3
+        },
+        {
+          "id": "sigiriya-3",
+          "src": "/images/sigiriya-3.jpg",
+          "caption": "Safe Bee Tours Sigiriya journey",
+          "alt": "Sigiriya trip photo",
+          "isCover": false,
+          "order": 4
+        }
+      ],
+      "plans": [
+        {
+          "id": "sigiriya-2d1n",
+          "name": "Sigiriya & Cultural Triangle",
+          "shortDescription": "Lion Rock, Dambulla and ancient heritage routes over two relaxed days.",
+          "duration": "2 Days / 1 Night",
+          "days": 2,
+          "nights": 1,
+          "startingPrice": "",
+          "currency": "USD",
+          "priceLabel": "Contact us",
+          "status": "published",
+          "order": 1,
+          "createdAt": "2025-01-01T00:00:00.000Z",
+          "updatedAt": "2026-10-03T22:45:18.213Z",
+          "routeStops": [
+            "Sigiriya, Sri Lanka",
+            "Dambulla Cave Temple, Sri Lanka"
+          ],
+          "gallery": [
+            {
+              "id": "sigiriya-plan-cover",
+              "src": "/images/sigiriya.jpg",
+              "caption": "Sigiriya tour cover",
+              "alt": "Sigiriya private tour",
+              "isCover": true,
+              "order": 1
+            },
+            {
+              "id": "sigiriya-plan-1",
+              "src": "/images/sigiriya-1.jpg",
+              "caption": "Sigiriya route",
+              "alt": "Sigiriya plan photo",
+              "isCover": false,
+              "order": 2
+            },
+            {
+              "id": "sigiriya-plan-2",
+              "src": "/images/sigiriya-2.jpg",
+              "caption": "Dambulla stop",
+              "alt": "Dambulla tour photo",
+              "isCover": false,
+              "order": 3
+            }
+          ],
+          "itineraryDays": [
+            {
+              "id": "sigiriya-day-1",
+              "dayNumber": 1,
+              "title": "Pickup -> Dambulla -> Sigiriya",
+              "description": "Pickup from your location, travel towards Sigiriya, visit Dambulla Cave Temple and continue to Sigiriya.",
+              "activities": [
+                "Private pickup",
+                "Dambulla Cave Temple visit",
+                "Travel to Sigiriya"
+              ],
+              "places": [
+                "Dambulla Cave Temple",
+                "Sigiriya"
+              ],
+              "meals": "",
+              "accommodation": "",
+              "notes": "",
+              "order": 1
+            },
+            {
+              "id": "sigiriya-day-2",
+              "dayNumber": 2,
+              "title": "Sigiriya Area Sightseeing",
+              "description": "Sigiriya area sightseeing, then return to the customer's pickup location.",
+              "activities": [
+                "Sigiriya area sightseeing",
+                "Return transfer"
+              ],
+              "places": [
+                "Sigiriya"
+              ],
+              "meals": "",
+              "accommodation": "",
+              "notes": "Final timing can be adjusted with Safe Bee Tours.",
+              "order": 2
+            }
+          ],
+          "highlights": [
+            "Private cultural tour plan",
+            "Dambulla and Sigiriya route",
+            "Pickup and return to customer's location"
+          ],
+          "included": [
+            "Private tour planning",
+            "Pickup and return transfer"
+          ],
+          "excluded": [],
+          "importantInfo": [
+            "Stops can be adjusted before booking."
+          ],
+          "thingsToBring": [],
+          "terms": [],
+          "pickupInfo": "Pickup and return to customer's location.",
+          "accommodationDetails": "",
+          "transportationDetails": "Private vehicle route: pickup -> Dambulla -> Sigiriya -> pickup."
+        }
+      ]
+    },
+    {
+      "id": "kandy",
+      "name": "Kandy",
+      "shortTitle": "Temple City",
+      "slug": "kandy",
+      "shortDescription": "Temple of the Tooth, gardens and Kandy Lake.",
+      "fullDescription": "A relaxed Kandy day covering the Temple of the Tooth, Royal Botanical Gardens and the city around Kandy Lake.",
+      "region": "Culture & Nature",
+      "featured": false,
+      "status": "published",
+      "order": 2,
+      "archivedAt": null,
+      "createdAt": "2025-01-02T00:00:00.000Z",
+      "updatedAt": "2026-10-03T22:45:18.213Z",
+      "location": {
+        "name": "Kandy",
+        "address": "Kandy, Sri Lanka",
+        "latitude": 7.2906,
+        "longitude": 80.6337,
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Kandy%2C%20Sri%20Lanka",
+        "googleMapsEmbedUrl": "https://www.google.com/maps?q=Kandy%2C%20Sri%20Lanka&output=embed"
+      },
+      "seo": {
+        "title": "Kandy Private Day Tour",
+        "description": "Private Kandy day tour with Safe Bee Tours."
+      },
+      "gallery": [
+        {
+          "id": "kandy-cover",
+          "src": "/images/kandy.jpg",
+          "caption": "Kandy destination cover",
+          "alt": "Kandy Sri Lanka",
+          "isCover": true,
+          "order": 1
+        },
+        {
+          "id": "kandy-1",
+          "src": "/images/kandy-1.jpg",
+          "caption": "Kandy moments",
+          "alt": "Kandy tour photo",
+          "isCover": false,
+          "order": 2
+        },
+        {
+          "id": "kandy-2",
+          "src": "/images/kandy-2.jpg",
+          "caption": "Kandy route",
+          "alt": "Kandy travel photo",
+          "isCover": false,
+          "order": 3
+        },
+        {
+          "id": "kandy-3",
+          "src": "/images/kandy-3.jpg",
+          "caption": "Hill-country day",
+          "alt": "Kandy journey photo",
+          "isCover": false,
+          "order": 4
+        }
+      ],
+      "plans": [
+        {
+          "id": "kandy-1d",
+          "name": "Kandy Highlights",
+          "shortDescription": "Temple of the Tooth, gardens and relaxed city sightseeing.",
+          "duration": "1 Day",
+          "days": 1,
+          "nights": 0,
+          "startingPrice": "",
+          "currency": "USD",
+          "priceLabel": "Contact us",
+          "status": "published",
+          "order": 1,
+          "createdAt": "2025-01-02T00:00:00.000Z",
+          "updatedAt": "2026-10-03T22:45:18.213Z",
+          "routeStops": [
+            "Temple of the Sacred Tooth Relic, Kandy, Sri Lanka",
+            "Royal Botanic Gardens, Peradeniya, Sri Lanka"
+          ],
+          "gallery": [
+            {
+              "id": "kandy-plan-cover",
+              "src": "/images/kandy.jpg",
+              "caption": "Kandy tour cover",
+              "alt": "Kandy private tour",
+              "isCover": true,
+              "order": 1
+            },
+            {
+              "id": "kandy-plan-1",
+              "src": "/images/kandy-1.jpg",
+              "caption": "Kandy city stop",
+              "alt": "Kandy plan photo",
+              "isCover": false,
+              "order": 2
+            }
+          ],
+          "itineraryDays": [
+            {
+              "id": "kandy-day-1",
+              "dayNumber": 1,
+              "title": "Pickup -> Kandy -> Peradeniya",
+              "description": "Pickup from your location and travel to Kandy for Temple of the Tooth, Kandy Lake and Royal Botanical Gardens before returning.",
+              "activities": [
+                "Private pickup",
+                "Temple visit",
+                "Botanical gardens",
+                "Return transfer"
+              ],
+              "places": [
+                "Temple of the Tooth",
+                "Kandy Lake",
+                "Royal Botanical Gardens"
+              ],
+              "meals": "",
+              "accommodation": "",
+              "notes": "Stops can be adjusted before booking.",
+              "order": 1
+            }
+          ],
+          "highlights": [
+            "Temple of the Tooth",
+            "Kandy Lake",
+            "Royal Botanical Gardens"
+          ],
+          "included": [
+            "Private day tour",
+            "Pickup and return to customer's location"
+          ],
+          "excluded": [],
+          "importantInfo": [
+            "Stops can be adjusted before booking."
+          ],
+          "thingsToBring": [],
+          "terms": [],
+          "pickupInfo": "Pickup and return to customer's location.",
+          "accommodationDetails": "",
+          "transportationDetails": "Private vehicle route: pickup -> Kandy -> Peradeniya -> pickup."
+        }
+      ]
+    },
+    {
+      "id": "ella",
+      "name": "Ella & Hill Country",
+      "shortTitle": "Tea Hills & Scenic Views",
+      "slug": "ella-hill-country",
+      "shortDescription": "Tea country, bridges and mountain viewpoints.",
+      "fullDescription": "Explore Ella's mountain scenery, tea country and famous viewpoints at a comfortable pace.",
+      "region": "Hill Country",
+      "featured": true,
+      "status": "published",
+      "order": 3,
+      "archivedAt": null,
+      "createdAt": "2025-01-03T00:00:00.000Z",
+      "updatedAt": "2026-10-03T22:45:18.213Z",
+      "location": {
+        "name": "Ella",
+        "address": "Ella, Sri Lanka",
+        "latitude": 6.8667,
+        "longitude": 81.0466,
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Ella%2C%20Sri%20Lanka",
+        "googleMapsEmbedUrl": "https://www.google.com/maps?q=Ella%2C%20Sri%20Lanka&output=embed"
+      },
+      "seo": {
+        "title": "Ella & Hill Country Private Tour",
+        "description": "Private Ella and Hill Country tours with Safe Bee Tours."
+      },
+      "gallery": [
+        {
+          "id": "ella-cover",
+          "src": "/images/ella.jpg",
+          "caption": "Ella destination cover",
+          "alt": "Ella Hill Country",
+          "isCover": true,
+          "order": 1
+        },
+        {
+          "id": "ella-1",
+          "src": "/images/ella-1.jpg",
+          "caption": "Ella views",
+          "alt": "Ella tour photo",
+          "isCover": false,
+          "order": 2
+        },
+        {
+          "id": "ella-2",
+          "src": "/images/ella-2.jpg",
+          "caption": "Hill country route",
+          "alt": "Ella travel photo",
+          "isCover": false,
+          "order": 3
+        },
+        {
+          "id": "ella-3",
+          "src": "/images/ella-3.jpg",
+          "caption": "Tea hills",
+          "alt": "Ella journey photo",
+          "isCover": false,
+          "order": 4
+        }
+      ],
+      "plans": [
+        {
+          "id": "ella-2d1n",
+          "name": "Ella & Hill Country",
+          "shortDescription": "Tea hills, bridges and mountain air over two days.",
+          "duration": "2 Days / 1 Night",
+          "days": 2,
+          "nights": 1,
+          "startingPrice": "",
+          "currency": "USD",
+          "priceLabel": "Contact us",
+          "status": "published",
+          "order": 1,
+          "createdAt": "2025-01-03T00:00:00.000Z",
+          "updatedAt": "2026-10-03T22:45:18.213Z",
+          "routeStops": [
+            "Nine Arches Bridge, Ella, Sri Lanka",
+            "Ella, Sri Lanka"
+          ],
+          "gallery": [
+            {
+              "id": "ella-plan-cover",
+              "src": "/images/ella.jpg",
+              "caption": "Ella tour cover",
+              "alt": "Ella private tour",
+              "isCover": true,
+              "order": 1
+            },
+            {
+              "id": "ella-plan-1",
+              "src": "/images/ella-1.jpg",
+              "caption": "Ella view",
+              "alt": "Ella plan photo",
+              "isCover": false,
+              "order": 2
+            }
+          ],
+          "itineraryDays": [
+            {
+              "id": "ella-day-1",
+              "dayNumber": 1,
+              "title": "Pickup -> Hill Country -> Ella",
+              "description": "Pickup and journey into the hill country, with scenic stops on the way to Ella.",
+              "activities": [
+                "Private pickup",
+                "Scenic hill-country drive",
+                "Tea country stops"
+              ],
+              "places": [
+                "Hill Country",
+                "Ella"
+              ],
+              "meals": "",
+              "accommodation": "",
+              "notes": "",
+              "order": 1
+            },
+            {
+              "id": "ella-day-2",
+              "dayNumber": 2,
+              "title": "Ella Sightseeing -> Return",
+              "description": "Ella sightseeing including Nine Arches Bridge area, then return to the customer's pickup location.",
+              "activities": [
+                "Nine Arches Bridge area",
+                "Ella sightseeing",
+                "Return transfer"
+              ],
+              "places": [
+                "Nine Arches Bridge",
+                "Ella"
+              ],
+              "meals": "",
+              "accommodation": "",
+              "notes": "Train experience can be discussed as an optional arrangement.",
+              "order": 2
+            }
+          ],
+          "highlights": [
+            "Tea country",
+            "Nine Arches Bridge",
+            "Mountain viewpoints"
+          ],
+          "included": [
+            "Private hill-country plan",
+            "Pickup and return to customer's location"
+          ],
+          "excluded": [],
+          "importantInfo": [
+            "Train experience can be discussed as an optional arrangement."
+          ],
+          "thingsToBring": [],
+          "terms": [],
+          "pickupInfo": "Pickup and return to customer's location.",
+          "accommodationDetails": "",
+          "transportationDetails": "Private vehicle route: pickup -> Ella -> Nine Arches Bridge -> pickup."
+        }
+      ]
+    },
+    {
+      "id": "galle",
+      "name": "Galle & South Coast",
+      "shortTitle": "Beaches & Heritage",
+      "slug": "galle-south-coast",
+      "shortDescription": "Galle Fort, coastline and beach time.",
+      "fullDescription": "A south-coast escape combining Galle Fort, coastal scenery and time by the beach.",
+      "region": "Beaches & Heritage",
+      "featured": false,
+      "status": "published",
+      "order": 4,
+      "archivedAt": null,
+      "createdAt": "2025-01-04T00:00:00.000Z",
+      "updatedAt": "2026-10-03T22:45:18.213Z",
+      "location": {
+        "name": "Galle",
+        "address": "Galle, Sri Lanka",
+        "latitude": 6.0535,
+        "longitude": 80.221,
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Galle%2C%20Sri%20Lanka",
+        "googleMapsEmbedUrl": "https://www.google.com/maps?q=Galle%2C%20Sri%20Lanka&output=embed"
+      },
+      "seo": {
+        "title": "Galle & South Coast Private Tour",
+        "description": "Private Galle and South Coast tours with Safe Bee Tours."
+      },
+      "gallery": [
+        {
+          "id": "galle-cover",
+          "src": "/images/galle.jpg",
+          "caption": "Galle destination cover",
+          "alt": "Galle South Coast",
+          "isCover": true,
+          "order": 1
+        },
+        {
+          "id": "galle-1",
+          "src": "/images/galle-1.jpg",
+          "caption": "South Coast photo",
+          "alt": "Galle tour photo",
+          "isCover": false,
+          "order": 2
+        },
+        {
+          "id": "galle-2",
+          "src": "/images/galle-2.jpg",
+          "caption": "Galle route",
+          "alt": "Galle travel photo",
+          "isCover": false,
+          "order": 3
+        },
+        {
+          "id": "galle-3",
+          "src": "/images/galle-3.jpg",
+          "caption": "Coastal journey",
+          "alt": "Galle journey photo",
+          "isCover": false,
+          "order": 4
+        }
+      ],
+      "plans": [
+        {
+          "id": "galle-1d",
+          "name": "Galle & South Coast",
+          "shortDescription": "Galle Fort, coastline and beach time in one private day.",
+          "duration": "1 Day",
+          "days": 1,
+          "nights": 0,
+          "startingPrice": "",
+          "currency": "USD",
+          "priceLabel": "Contact us",
+          "status": "published",
+          "order": 1,
+          "createdAt": "2025-01-04T00:00:00.000Z",
+          "updatedAt": "2026-10-03T22:45:18.213Z",
+          "routeStops": [
+            "Galle Fort, Galle, Sri Lanka",
+            "Mirissa, Sri Lanka"
+          ],
+          "gallery": [
+            {
+              "id": "galle-plan-cover",
+              "src": "/images/galle.jpg",
+              "caption": "Galle tour cover",
+              "alt": "Galle private tour",
+              "isCover": true,
+              "order": 1
+            },
+            {
+              "id": "galle-plan-1",
+              "src": "/images/galle-1.jpg",
+              "caption": "Galle coast",
+              "alt": "Galle plan photo",
+              "isCover": false,
+              "order": 2
+            }
+          ],
+          "itineraryDays": [
+            {
+              "id": "galle-day-1",
+              "dayNumber": 1,
+              "title": "Pickup -> Galle Fort -> South Coast",
+              "description": "Pickup and coastal drive towards Galle, explore Galle Fort and continue along the South Coast before returning.",
+              "activities": [
+                "Private pickup",
+                "Galle Fort visit",
+                "Coastal sightseeing",
+                "Return transfer"
+              ],
+              "places": [
+                "Galle Fort",
+                "South Coast"
+              ],
+              "meals": "",
+              "accommodation": "",
+              "notes": "Beach and coastal stops can be selected.",
+              "order": 1
+            }
+          ],
+          "highlights": [
+            "Galle Fort",
+            "South Coast",
+            "Beach and coastal stops"
+          ],
+          "included": [
+            "Private coastal tour",
+            "Pickup and return to customer's location"
+          ],
+          "excluded": [],
+          "importantInfo": [
+            "Beach and coastal stops can be selected."
+          ],
+          "thingsToBring": [],
+          "terms": [],
+          "pickupInfo": "Pickup and return to customer's location.",
+          "accommodationDetails": "",
+          "transportationDetails": "Private vehicle route: pickup -> Galle Fort -> South Coast -> pickup."
+        }
+      ]
+    },
+    {
+      "id": "yala",
+      "name": "Yala & Udawalawe",
+      "shortTitle": "Wildlife Safari",
+      "slug": "yala-udawalawe",
+      "shortDescription": "Southern wildlife routes and safari planning.",
+      "fullDescription": "A wildlife-focused plan built around safari experiences in Sri Lanka's southern wildlife region.",
+      "region": "Wildlife Safari",
+      "featured": false,
+      "status": "published",
+      "order": 5,
+      "archivedAt": null,
+      "createdAt": "2025-01-05T00:00:00.000Z",
+      "updatedAt": "2026-10-03T22:45:18.213Z",
+      "location": {
+        "name": "Yala National Park",
+        "address": "Yala National Park, Sri Lanka",
+        "latitude": 6.372,
+        "longitude": 81.516,
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Yala%20National%20Park%2C%20Sri%20Lanka",
+        "googleMapsEmbedUrl": "https://www.google.com/maps?q=Yala%20National%20Park%2C%20Sri%20Lanka&output=embed"
+      },
+      "seo": {
+        "title": "Yala & Udawalawe Safari Tour",
+        "description": "Private Yala and Udawalawe wildlife safari tour plans."
+      },
+      "gallery": [
+        {
+          "id": "yala-cover",
+          "src": "/images/yala.jpg",
+          "caption": "Yala destination cover",
+          "alt": "Yala safari",
+          "isCover": true,
+          "order": 1
+        },
+        {
+          "id": "yala-1",
+          "src": "/images/yala-1.jpg",
+          "caption": "Wildlife route",
+          "alt": "Yala tour photo",
+          "isCover": false,
+          "order": 2
+        },
+        {
+          "id": "yala-2",
+          "src": "/images/yala-2.jpg",
+          "caption": "Safari memory",
+          "alt": "Yala safari photo",
+          "isCover": false,
+          "order": 3
+        },
+        {
+          "id": "yala-3",
+          "src": "/images/yala-3.jpg",
+          "caption": "Southern wildlife",
+          "alt": "Yala journey photo",
+          "isCover": false,
+          "order": 4
+        }
+      ],
+      "plans": [
+        {
+          "id": "yala-2d1n",
+          "name": "Yala & Udawalawe",
+          "shortDescription": "Southern wildlife routes and safari planning over two days.",
+          "duration": "2 Days / 1 Night",
+          "days": 2,
+          "nights": 1,
+          "startingPrice": "",
+          "currency": "USD",
+          "priceLabel": "Contact us",
+          "status": "published",
+          "order": 1,
+          "createdAt": "2025-01-05T00:00:00.000Z",
+          "updatedAt": "2026-10-03T22:45:18.213Z",
+          "routeStops": [
+            "Udawalawe National Park, Sri Lanka",
+            "Yala National Park, Sri Lanka"
+          ],
+          "gallery": [
+            {
+              "id": "yala-plan-cover",
+              "src": "/images/yala.jpg",
+              "caption": "Yala safari cover",
+              "alt": "Yala private safari",
+              "isCover": true,
+              "order": 1
+            },
+            {
+              "id": "yala-plan-1",
+              "src": "/images/yala-1.jpg",
+              "caption": "Safari route",
+              "alt": "Yala plan photo",
+              "isCover": false,
+              "order": 2
+            }
+          ],
+          "itineraryDays": [
+            {
+              "id": "yala-day-1",
+              "dayNumber": 1,
+              "title": "Pickup -> Udawalawe",
+              "description": "Pickup and travel towards the wildlife region, with an optional Udawalawe safari arrangement.",
+              "activities": [
+                "Private pickup",
+                "Travel to wildlife region",
+                "Optional Udawalawe safari"
+              ],
+              "places": [
+                "Udawalawe"
+              ],
+              "meals": "",
+              "accommodation": "",
+              "notes": "",
+              "order": 1
+            },
+            {
+              "id": "yala-day-2",
+              "dayNumber": 2,
+              "title": "Yala Safari -> Return",
+              "description": "Yala area safari arrangement and return journey to the customer's pickup location.",
+              "activities": [
+                "Yala area safari arrangement",
+                "Return transfer"
+              ],
+              "places": [
+                "Yala National Park"
+              ],
+              "meals": "",
+              "accommodation": "",
+              "notes": "Safari entrance and timing arrangements are confirmed separately.",
+              "order": 2
+            }
+          ],
+          "highlights": [
+            "Southern wildlife route",
+            "Udawalawe and Yala safari planning",
+            "Private pickup and return"
+          ],
+          "included": [
+            "Private wildlife plan",
+            "Pickup and return to customer's location"
+          ],
+          "excluded": [
+            "Safari entrance fees unless separately confirmed"
+          ],
+          "importantInfo": [
+            "Safari entrance and timing arrangements are confirmed separately."
+          ],
+          "thingsToBring": [],
+          "terms": [],
+          "pickupInfo": "Pickup and return to customer's location.",
+          "accommodationDetails": "",
+          "transportationDetails": "Private vehicle route: pickup -> Udawalawe -> Yala -> pickup."
+        }
+      ]
+    },
+    {
+      "id": "trinco",
+      "name": "Trincomalee & East Coast",
+      "shortTitle": "East Coast",
+      "slug": "trincomalee-east-coast",
+      "shortDescription": "Clear water, coastal sightseeing and island trips.",
+      "fullDescription": "Discover Trincomalee's coastline, clear water and relaxed East Coast atmosphere.",
+      "region": "East Coast",
+      "featured": false,
+      "status": "published",
+      "order": 6,
+      "archivedAt": null,
+      "createdAt": "2025-01-06T00:00:00.000Z",
+      "updatedAt": "2026-10-03T22:45:18.213Z",
+      "location": {
+        "name": "Trincomalee",
+        "address": "Trincomalee, Sri Lanka",
+        "latitude": 8.5874,
+        "longitude": 81.2152,
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Trincomalee%2C%20Sri%20Lanka",
+        "googleMapsEmbedUrl": "https://www.google.com/maps?q=Trincomalee%2C%20Sri%20Lanka&output=embed"
+      },
+      "seo": {
+        "title": "Trincomalee & East Coast Private Tour",
+        "description": "Private Trincomalee and East Coast tour plans with Safe Bee Tours."
+      },
+      "gallery": [
+        {
+          "id": "trinco-cover",
+          "src": "/images/trincomalee.jpg",
+          "caption": "Trincomalee destination cover",
+          "alt": "Trincomalee East Coast",
+          "isCover": true,
+          "order": 1
+        },
+        {
+          "id": "trinco-1",
+          "src": "/images/trincomalee-1.jpg",
+          "caption": "East Coast photo",
+          "alt": "Trincomalee tour photo",
+          "isCover": false,
+          "order": 2
+        },
+        {
+          "id": "trinco-2",
+          "src": "/images/trincomalee-2.jpg",
+          "caption": "Coastal route",
+          "alt": "Trincomalee travel photo",
+          "isCover": false,
+          "order": 3
+        },
+        {
+          "id": "trinco-3",
+          "src": "/images/trincomalee-3.jpg",
+          "caption": "Island trip planning",
+          "alt": "Trincomalee journey photo",
+          "isCover": false,
+          "order": 4
+        }
+      ],
+      "plans": [
+        {
+          "id": "trinco-2d1n",
+          "name": "Trincomalee & East Coast",
+          "shortDescription": "Clear water, coastal sightseeing and island trips over two days.",
+          "duration": "2 Days / 1 Night",
+          "days": 2,
+          "nights": 1,
+          "startingPrice": "",
+          "currency": "USD",
+          "priceLabel": "Contact us",
+          "status": "published",
+          "order": 1,
+          "createdAt": "2025-01-06T00:00:00.000Z",
+          "updatedAt": "2026-10-03T22:45:18.213Z",
+          "routeStops": [
+            "Trincomalee, Sri Lanka",
+            "Pigeon Island National Park, Sri Lanka"
+          ],
+          "gallery": [
+            {
+              "id": "trinco-plan-cover",
+              "src": "/images/trincomalee.jpg",
+              "caption": "Trincomalee tour cover",
+              "alt": "Trincomalee private tour",
+              "isCover": true,
+              "order": 1
+            },
+            {
+              "id": "trinco-plan-1",
+              "src": "/images/trincomalee-1.jpg",
+              "caption": "East Coast route",
+              "alt": "Trincomalee plan photo",
+              "isCover": false,
+              "order": 2
+            }
+          ],
+          "itineraryDays": [
+            {
+              "id": "trinco-day-1",
+              "dayNumber": 1,
+              "title": "Pickup -> Trincomalee",
+              "description": "Pickup and journey to Trincomalee, with coastal and local sightseeing.",
+              "activities": [
+                "Private pickup",
+                "Coastal travel",
+                "Local sightseeing"
+              ],
+              "places": [
+                "Trincomalee"
+              ],
+              "meals": "",
+              "accommodation": "",
+              "notes": "",
+              "order": 1
+            },
+            {
+              "id": "trinco-day-2",
+              "dayNumber": 2,
+              "title": "Trincomalee / Pigeon Island -> Return",
+              "description": "Trincomalee or Pigeon Island arrangements, then return to the customer's pickup location.",
+              "activities": [
+                "Trincomalee sightseeing",
+                "Optional Pigeon Island arrangements",
+                "Return transfer"
+              ],
+              "places": [
+                "Trincomalee",
+                "Pigeon Island"
+              ],
+              "meals": "",
+              "accommodation": "",
+              "notes": "Boat and activity arrangements can be discussed.",
+              "order": 2
+            }
+          ],
+          "highlights": [
+            "East Coast atmosphere",
+            "Coastal sightseeing",
+            "Optional island arrangements"
+          ],
+          "included": [
+            "Private East Coast plan",
+            "Pickup and return to customer's location"
+          ],
+          "excluded": [
+            "Boat/activity fees unless separately confirmed"
+          ],
+          "importantInfo": [
+            "Boat and activity arrangements can be discussed."
+          ],
+          "thingsToBring": [],
+          "terms": [],
+          "pickupInfo": "Pickup and return to customer's location.",
+          "accommodationDetails": "",
+          "transportationDetails": "Private vehicle route: pickup -> Trincomalee -> Pigeon Island -> pickup."
+        }
+      ]
+    }
+  ]
+}

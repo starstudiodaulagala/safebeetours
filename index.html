@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Safe Bee Tours | Private tours across Sri Lanka</title>
+<meta name="description" content="Safe Bee Tours plans private, safe and friendly tours across Sri Lanka. Send your inquiry and we reply on WhatsApp.">
+<link rel="icon" href="LOGO.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#121212;--ink2:#1c1c1c;--honey:#F0B90B;--honey-l:#FFF4CC;--teal:#5FBFC4;--teal-d:#2E8E94;--mist:#F4F9F9;--line:#E3E8E8;
+--serif:"Cormorant Garamond",Georgia,serif;--sans:"Jost",system-ui,sans-serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:#fff;line-height:1.6;font-size:17px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+.btn{display:inline-block;background:var(--honey);color:var(--ink);padding:14px 30px;border:0;border-radius:99px;font:600 16px var(--sans);cursor:pointer;text-decoration:none;transition:transform .2s,box-shadow .2s,background .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(240,185,11,.4)}
+.btn.ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5)}
+.btn.ghost:hover{background:#fff;color:var(--ink);box-shadow:none}
+.btn.sm{padding:9px 20px;font-size:14px}
+
+header{position:fixed;inset:0 0 auto 0;z-index:20;transition:background .3s,box-shadow .3s}
+header.solid{background:rgba(18,18,18,.94);backdrop-filter:blur(8px);box-shadow:0 2px 18px rgba(0,0,0,.25)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;height:72px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff;font-family:var(--serif);font-size:25px;font-weight:700}
+.brand img{height:44px;width:44px;object-fit:cover;object-position:center 46%;background:#fff;border-radius:50%;padding:3px}
+.site-nav{display:flex;gap:28px;align-items:center;font-size:15px;color:#fff;margin-left:auto}
+.site-nav a{text-decoration:none}
+.site-nav a:not(.btn):hover{color:var(--honey)}
+.account-link{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.06);transition:background .2s,border-color .2s,color .2s,transform .2s}
+.account-link:hover{color:var(--honey);border-color:rgba(240,185,11,.7);background:rgba(240,185,11,.11);transform:translateY(-1px)}
+.account-link svg{width:20px;height:20px}
+
+/* hero */
+.hero{position:relative;background:var(--ink);color:#fff;overflow:hidden;padding:150px 0 170px}
+.hero::before{content:"";position:absolute;inset:0;opacity:.13;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='98' viewBox='0 0 56 98'%3E%3Cpath d='M28 2l26 15v30L28 62 2 47V17zM28 64l26 15v19M28 64L2 79v19' fill='none' stroke='%23F0B90B' stroke-width='1.5'/%3E%3C/svg%3E")}
+.hero::after{content:"";position:absolute;width:620px;height:620px;right:-140px;top:-120px;border-radius:50%;background:radial-gradient(circle,rgba(95,191,196,.35),transparent 68%)}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.badge{display:inline-block;border:1px solid rgba(240,185,11,.6);color:var(--honey);padding:6px 16px;border-radius:99px;font-size:14px;margin-bottom:22px}
+.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(46px,6.6vw,86px);line-height:1;letter-spacing:-.01em}
+.hero h1 em{color:var(--honey);font-weight:500}
+.hero p{margin:24px 0 34px;max-width:480px;font-size:19px;color:#d6d6d6}
+.actions{display:flex;gap:14px;flex-wrap:wrap}
+.hero-showcase{position:relative;isolation:isolate;width:min(100%,370px);aspect-ratio:4/5;padding:12px;justify-self:center;overflow:hidden;background:#fff;border-radius:28px;transform:rotate(3deg);box-shadow:0 30px 70px rgba(0,0,0,.5),0 0 0 8px rgba(240,185,11,.9)}
+.hero-showcase .showcase-slide,.hero-showcase .showcase-fallback{position:absolute;inset:12px;border-radius:20px;overflow:hidden;background:#fff}
+.hero-showcase .showcase-slide{opacity:0;transition:opacity .7s ease}
+.hero-showcase .showcase-slide.active{opacity:1}
+.hero-showcase .showcase-slide img{width:100%;height:100%;object-fit:cover}
+.hero-showcase .showcase-fallback{display:grid;place-items:center;padding:20px}
+.hero-showcase.has-photos .showcase-fallback{display:none}
+.hero-showcase .showcase-fallback img{max-width:100%;height:auto}
+.showcase-label{position:absolute;left:24px;bottom:24px;z-index:2;background:rgba(18,18,18,.82);color:#fff;border-radius:99px;padding:7px 13px;font-size:13px;letter-spacing:.02em}
+.curve{position:absolute;bottom:-1px;left:0;width:100%;height:80px;z-index:2;display:block}
+
+/* sections */
+section{padding:92px 0}
+.head{text-align:center;margin-bottom:54px}
+h2{font-family:var(--serif);font-weight:600;font-size:clamp(36px,4.6vw,56px);line-height:1.08}
+.head p{max-width:540px;margin:14px auto 0;color:#4d4d4d}
+.sep{display:block;width:84px;height:12px;margin:18px auto 0;background:repeating-linear-gradient(90deg,var(--ink) 0 14px,var(--honey) 14px 28px);border-radius:6px}
+
+/* destination cards */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 10px 34px rgba(18,18,18,.09);transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-6px);box-shadow:0 18px 44px rgba(18,18,18,.16)}
+.scene{position:relative;height:170px;background:linear-gradient(var(--a),var(--b));overflow:hidden}
+.scene::before{content:"";position:absolute;width:54px;height:54px;border-radius:50%;background:var(--sun,#fff6c8);right:28px;top:26px;box-shadow:0 0 40px var(--sun,#fff6c8)}
+.scene::after{content:"";position:absolute;left:0;right:0;bottom:0;height:70%;background:var(--c);clip-path:var(--shape)}
+.scene i{position:absolute;left:0;right:0;bottom:0;height:46%;background:var(--d);clip-path:var(--shape2);z-index:1}
+.s1{--a:#f6a35c;--b:#fbd68a;--c:#6b3f2a;--d:#3f2a1e;--shape:polygon(0 100%,0 62%,28% 55%,40% 8%,52% 8%,62% 55%,100% 48%,100% 100%);--shape2:polygon(0 100%,0 40%,35% 55%,70% 35%,100% 52%,100% 100%)}
+.s2{--a:#7fb7a4;--b:#d7ecd0;--c:#2f6b57;--d:#1d4a3a;--shape:polygon(0 100%,0 50%,25% 30%,50% 48%,75% 25%,100% 45%,100% 100%);--shape2:polygon(0 100%,0 55%,30% 40%,60% 58%,100% 35%,100% 100%)}
+.s3{--a:#9ad5dc;--b:#e6f6e2;--c:#3d9a63;--d:#1f6e45;--shape:polygon(0 100%,0 40%,20% 22%,45% 44%,70% 14%,100% 38%,100% 100%);--shape2:polygon(0 100%,0 60%,40% 38%,75% 58%,100% 44%,100% 100%)}
+.s4{--a:#5fbfc4;--b:#f9e7b4;--c:#1f8fa0;--d:#f0c876;--shape:polygon(0 100%,0 50%,12% 44%,25% 52%,38% 44%,50% 52%,63% 44%,75% 52%,88% 44%,100% 50%,100% 100%);--shape2:polygon(0 100%,0 78%,100% 62%,100% 100%)}
+.s5{--a:#e58a4d;--b:#f7cf7f;--c:#7a5a2a;--d:#4f3a1b;--shape:polygon(0 100%,0 70%,100% 70%,100% 100%);--shape2:polygon(0 100%,0 62%,22% 48%,45% 62%,70% 44%,100% 60%,100% 100%)}
+.s6{--a:#77c7d4;--b:#d3f1ee;--c:#2a97b0;--d:#f4dfa2;--shape:polygon(0 100%,0 45%,15% 40%,30% 48%,50% 40%,70% 48%,85% 40%,100% 46%,100% 100%);--shape2:polygon(0 100%,0 70%,100% 55%,100% 100%)}
+.card div.b{padding:22px 24px 26px;border-top:4px solid var(--honey)}
+.card h3{font-family:var(--serif);font-size:27px;font-weight:700;line-height:1.15;margin-bottom:8px}
+.card p{color:#555;font-size:16px}
+
+/* tour plans */
+.plans-note{max-width:760px;margin:0 auto 28px;text-align:center;color:#666;font-size:15px}
+.plan-card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 10px 34px rgba(18,18,18,.09);transition:transform .25s,box-shadow .25s;border:1px solid #edf0f0;cursor:pointer}.plan-card:focus-visible{outline:3px solid var(--teal);outline-offset:4px}
+.plan-card:hover{transform:translateY(-6px);box-shadow:0 18px 44px rgba(18,18,18,.16)}
+.plan-photo{height:205px;background:linear-gradient(135deg,#dfeeed,#fff4cc);position:relative;display:grid;place-items:center;overflow:hidden}
+.plan-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.plan-photo .photo-placeholder{position:absolute;inset:0;display:none;place-items:center;color:#557070;font-size:15px;letter-spacing:.04em;background:linear-gradient(135deg,#edf7f7,#fff8df)}
+.plan-tag{position:absolute;left:16px;top:16px;background:rgba(18,18,18,.86);color:#fff;border-radius:99px;padding:6px 12px;font-size:13px}
+.plan-body{padding:22px 24px 25px;border-top:4px solid var(--honey)}
+.plan-body h3{font-family:var(--serif);font-size:28px;line-height:1.12;margin-bottom:8px}
+.plan-desc{color:#555;font-size:15.5px;min-height:50px}
+.plan-meta{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0 18px}
+.plan-meta span{background:var(--mist);border-radius:99px;padding:6px 10px;font-size:13px;color:#315d60}
+.plan-actions{display:flex;gap:9px;flex-wrap:wrap}
+.plan-actions .btn{padding:11px 17px;font-size:14px}
+.btn.dark{background:var(--ink);color:#fff}.btn.dark:hover{background:#2d2d2d;box-shadow:0 8px 22px rgba(18,18,18,.25)}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.68);z-index:100;display:none;padding:24px;overflow:auto}
+.modal.open{display:flex;align-items:flex-start;justify-content:center}
+.modal-box{width:min(980px,100%);margin:30px auto;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.4);position:relative}
+.modal-top{padding:30px 34px 20px;border-bottom:1px solid var(--line)}
+.modal-top h2{font-size:44px;margin-right:45px}.modal-top p{color:#555;margin-top:9px;max-width:760px}.customize-note{margin-top:16px;padding:13px 16px;background:var(--honey-l);border-radius:12px;color:#5d5230}.gallery{position:relative;height:330px;background:#edf5f5;overflow:hidden}.gallery-slide{position:absolute;inset:0;opacity:0;transition:opacity .35s}.gallery-slide.active{opacity:1}.gallery-slide img{width:100%;height:100%;object-fit:cover;display:block}.gallery-placeholder{position:absolute;inset:0;display:none;place-items:center;color:#557070;background:linear-gradient(135deg,#edf7f7,#fff8df);font-size:15px;letter-spacing:.04em}.gallery-nav{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:0 14px;pointer-events:none}.gallery-nav button{pointer-events:auto;width:42px;height:42px;border:0;border-radius:50%;background:rgba(18,18,18,.68);color:#fff;font-size:25px;cursor:pointer}.gallery-dots{position:absolute;left:0;right:0;bottom:14px;display:flex;justify-content:center;gap:7px;max-width:calc(100% - 120px);margin:0 auto;flex-wrap:wrap}.gallery-dots button{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.6);cursor:pointer}.gallery-dots button.active{background:var(--honey);transform:scale(1.25)}
+.close-modal{position:absolute;right:20px;top:18px;width:42px;height:42px;border:0;border-radius:50%;background:#f1f3f3;font-size:27px;cursor:pointer}
+.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;padding:28px 34px}
+.detail-box{background:#f8fbfb;border-radius:15px;padding:21px}.detail-box h3{font-family:var(--serif);font-size:25px;margin-bottom:11px}.detail-box ul{padding-left:20px}.detail-box li{margin:7px 0;color:#444}
+.route-box{grid-column:1/-1;background:var(--mist);border:1px solid #dceaea;border-radius:16px;padding:22px}.route-box h3{font-family:var(--serif);font-size:27px;margin-bottom:8px}
+.route-form{display:grid;grid-template-columns:1fr auto;gap:10px;margin:14px 0}.route-form input{background:#fff}.route-result{display:none;background:#fff;border-radius:12px;padding:15px;margin-top:12px}.route-result strong{font-size:18px}.route-result small{display:block;color:#666;margin-top:4px}
+.booking{grid-column:1/-1;border-top:1px solid var(--line);padding-top:25px}.booking h3{font-family:var(--serif);font-size:30px;margin-bottom:13px}.booking-form{display:grid;grid-template-columns:1fr 1fr;gap:14px}.booking-form .full{grid-column:1/-1}.booking-form .btn{margin-top:3px;width:100%;background:#1FA855;color:#fff}
+.map-link{display:inline-block;margin-top:10px;color:var(--teal-d);font-weight:600}
+@media(max-width:700px){.modal{padding:10px}.modal-box{margin:10px auto}.modal-top{padding:25px 20px 18px}.modal-top h2{font-size:36px}.modal-grid{grid-template-columns:1fr;padding:20px}.route-box,.booking{grid-column:auto}.route-form,.booking-form{grid-template-columns:1fr}.booking-form .full{grid-column:auto}}
+
+/* how it works */
+.how{background:var(--ink);color:#fff;position:relative}
+.how .head p{color:#c9c9c9}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.step{background:var(--ink2);border:1px solid #2c2c2c;border-radius:18px;padding:32px 28px}
+.step b{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:var(--honey);color:var(--ink);font:700 22px var(--serif);margin-bottom:18px}
+.step h3{font-family:var(--serif);font-size:27px;margin-bottom:6px}
+.step p{color:#bdbdbd;font-size:16px}
+
+/* safety */
+.safe{background:var(--mist)}
+.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.feat{background:#fff;border-radius:18px;padding:32px 28px;border-bottom:5px solid var(--teal)}
+.feat svg{width:44px;height:44px;margin-bottom:14px}
+.feat h3{font-family:var(--serif);font-size:27px;margin-bottom:6px}
+.feat p{color:#555;font-size:16px}
+
+/* memories gallery */
+.memories{background:#fff}
+.memories .head{margin-bottom:38px}
+.gallery-carousel{position:relative;--gallery-card-width:calc((100% - 48px)/3)}
+.carousel-window{overflow:hidden;padding:6px 2px 18px}
+.memory-track{display:flex;gap:24px;transition:transform .42s ease;will-change:transform}
+.memory-card{flex:0 0 var(--gallery-card-width);background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 12px 30px rgba(18,18,18,.08);transition:transform .22s,box-shadow .22s}
+.memory-card:hover{transform:translateY(-4px);box-shadow:0 18px 38px rgba(18,18,18,.13)}
+.memory-photo{aspect-ratio:4/5;background:#edf5f5;overflow:hidden}
+.memory-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.memory-body{padding:16px 18px 18px;border-top:4px solid var(--honey);min-height:116px}
+.memory-body h3{font-family:var(--serif);font-size:24px;line-height:1.1;margin-bottom:7px}
+.memory-body p{color:#555;font-size:14.5px;line-height:1.45}
+.carousel-arrow{position:absolute;top:39%;z-index:2;display:grid;place-items:center;width:46px;height:46px;border:0;border-radius:50%;background:rgba(18,18,18,.82);color:#fff;box-shadow:0 10px 28px rgba(0,0,0,.18);cursor:pointer;transition:background .2s,transform .2s,opacity .2s}
+.carousel-arrow:hover{background:var(--honey);color:var(--ink);transform:translateY(-1px)}
+.carousel-arrow:disabled{opacity:.28;cursor:default;transform:none;background:rgba(18,18,18,.38);color:#fff}
+.carousel-arrow svg{width:22px;height:22px}
+.carousel-prev{left:-23px}
+.carousel-next{right:-23px}
+.carousel-dots{display:flex;justify-content:center;gap:9px;margin:4px 0 28px}
+.carousel-dots button{width:9px;height:9px;padding:0;border:0;border-radius:50%;background:#cbd7d7;cursor:pointer;transition:background .2s,transform .2s}
+.carousel-dots button.active{background:var(--honey);transform:scale(1.25)}
+.gallery-carousel.is-static .carousel-arrow,.gallery-carousel.is-static .carousel-dots{display:none}
+.add-photo-card{display:block;width:calc((100% - 48px)/3);min-width:260px;max-width:360px;margin:0 auto 36px;padding:0;background:#fff;border:1.5px dashed #b8caca;border-radius:16px;overflow:hidden;color:var(--ink);font:inherit;text-align:left;cursor:pointer;box-shadow:none;transition:border-color .2s,transform .22s,box-shadow .22s,background .2s}
+.add-photo-card:hover{border-color:var(--teal-d);transform:translateY(-3px);box-shadow:0 16px 34px rgba(18,18,18,.1);background:#fbffff}
+.add-photo-visual{display:grid;place-items:center;aspect-ratio:4/5;background:linear-gradient(135deg,#f6fbfb,#fff8df)}
+.add-photo-plus{display:grid;place-items:center;width:74px;height:74px;border-radius:50%;background:var(--honey);color:var(--ink);font-size:48px;line-height:1;font-weight:500;box-shadow:0 12px 28px rgba(240,185,11,.3)}
+.add-photo-body{padding:16px 18px 18px;border-top:4px solid var(--honey);text-align:center}
+.add-photo-body strong{display:block;font-family:var(--serif);font-size:25px;line-height:1.1}
+.add-photo-body span{display:block;margin-top:6px;color:#5c6666;font-size:14px}
+.photo-modal{position:fixed;inset:0;z-index:110;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.64);padding:22px}
+.photo-modal.open{display:flex}
+.photo-dialog{position:relative;width:min(540px,100%);background:#fff;border-radius:20px;box-shadow:0 30px 90px rgba(0,0,0,.35);overflow:hidden}
+.photo-dialog-top{padding:28px 30px 0}
+.photo-dialog-top h3{font-family:var(--serif);font-size:34px;line-height:1.05;margin-right:44px}
+.photo-dialog-top p{margin-top:8px;color:#5a6262;font-size:15px}
+.photo-dialog .gallery-form{display:grid;grid-template-columns:1fr;gap:16px;background:#fff;border:0;border-radius:0;box-shadow:none;padding:24px 30px 30px}
+.photo-dialog .submit .btn{background:#1FA855;color:#fff}
+.photo-close{position:absolute;right:18px;top:16px;display:grid;place-items:center;width:38px;height:38px;border:0;border-radius:50%;background:#f1f3f3;color:var(--ink);font-size:25px;cursor:pointer}
+.form-status{grid-column:1/-1;display:none;background:var(--mist);border-left:4px solid var(--teal-d);border-radius:8px;padding:12px 16px;font-size:15px}
+/* inquiry */
+.inquire .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+.inquire aside{position:sticky;top:100px}
+.inquire aside h2{margin-bottom:16px}
+.inquire aside p{color:#4d4d4d;margin-bottom:22px}
+.eyebrow{display:inline-block;margin-bottom:10px;color:#8a6a05;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.contact{display:flex;align-items:center;gap:14px;background:var(--honey-l);border-radius:14px;padding:16px 18px}
+.contact span{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:#1FA855;color:#fff}
+.contact strong{display:block;font-family:var(--serif);font-size:25px;line-height:1.1}
+.contact small{color:#5d5230}
+form{display:grid;grid-template-columns:1fr 1fr;gap:18px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(18,18,18,.13);border-top:7px solid var(--honey)}
+.trip-form{grid-template-columns:1fr;gap:18px;border:1px solid #e6e0d5;border-top:4px solid var(--honey);border-radius:18px;padding:30px;background:#fffdf8;box-shadow:0 18px 52px rgba(18,18,18,.12)}
+.form-intro,.form-section{grid-column:1/-1}
+.form-intro{padding-bottom:6px;border-bottom:1px solid #ece5d8}
+.form-intro h3{max-width:620px;font-family:var(--serif);font-size:31px;line-height:1.08;font-weight:600}
+.form-section{display:grid;gap:14px;padding:4px 0}
+.form-section h4,.interest-section legend{color:#2d2b25;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.f{display:flex;flex-direction:column;gap:6px}
+.f.full,fieldset,.submit,#status{grid-column:1/-1}
+label,legend{font-size:14px;font-weight:500}
+input,select,textarea{font:inherit;padding:12px 14px;border:1.5px solid #D2DADA;border-radius:10px;background:#fff;width:100%;transition:border-color .2s,box-shadow .2s}
+input:focus,textarea:focus{outline:0;border-color:var(--teal-d);box-shadow:0 0 0 4px rgba(95,191,196,.3)}
+fieldset{border:0;padding:0}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:0}
+.chips label{position:relative;font-weight:400}
+.chips input{position:absolute;opacity:0;width:auto}
+.chips span{display:inline-block;padding:10px 15px;border:1.5px solid #d8d1c3;border-radius:12px;background:#fff;color:#343029;font-size:15px;cursor:pointer;transition:background .15s,border-color .15s,color .15s,box-shadow .15s}
+.chips span:hover{border-color:#b48b08;background:#fffaf0}
+.chips input:checked+span{background:#171713;border-color:#171713;color:#fff;box-shadow:0 8px 18px rgba(18,18,18,.12)}
+.chips input:focus-visible+span{outline:3px solid var(--teal);outline-offset:2px}
+.submit{display:flex;flex-direction:column;gap:12px}
+.submit .btn{width:100%;padding:16px;background:#1FA855;color:#fff;font-size:17px}
+.submit .btn:hover{background:#178a45;box-shadow:0 8px 22px rgba(31,168,85,.4)}
+.note{font-size:14px;color:#666;text-align:center}
+#status{display:none;background:var(--mist);border-left:4px solid var(--teal-d);border-radius:8px;padding:12px 16px;font-size:15px}
+#status a{color:var(--teal-d);font-weight:600}
+
+footer{background:var(--ink);color:#cfcfcf;padding:30px 0;border-top:6px solid var(--honey)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:15px}
+footer a{color:var(--honey);text-decoration:none}
+.fab{position:fixed;right:20px;bottom:20px;z-index:30;display:grid;place-items:center;width:58px;height:58px;border-radius:50%;background:#1FA855;color:#fff;box-shadow:0 8px 24px rgba(0,0,0,.3);transition:transform .2s}
+.fab:hover{transform:scale(1.08)}
+
+@media (prefers-reduced-motion:no-preference){
+  .hero-showcase{animation:float 6s ease-in-out infinite}
+  @keyframes float{50%{transform:rotate(1deg) translateY(-12px)}}
+}
+@media (max-width:900px){
+  .site-nav a:not(.btn),.site-nav .btn{display:none}
+  .hero{padding:118px 0 130px}
+  .hero .wrap,.inquire .wrap{grid-template-columns:1fr}
+  .hero-showcase{width:min(100%,310px)}
+  .cards,.steps,.feats{grid-template-columns:1fr}
+  .site-nav{gap:0}
+  .carousel-prev{left:4px}.carousel-next{right:4px}
+  .carousel-arrow{top:36%;width:42px;height:42px}
+  .add-photo-card{width:min(100%,360px)}
+  .inquire aside{position:static}
+  form{grid-template-columns:1fr;padding:24px}
+  .trip-form{padding:22px}
+  .form-grid{grid-template-columns:1fr}
+  section{padding:64px 0}
+}
+@media (max-width:600px){
+  header .wrap{height:68px;padding:0 16px}
+  .brand{font-size:21px;gap:9px}
+  .brand img{width:38px;height:38px}
+  .account-link{width:38px;height:38px}
+  .memory-track{gap:16px}
+  .memory-body{min-height:110px;padding:15px 16px 17px}
+  .memory-body h3{font-size:23px}
+  .add-photo-card{min-width:0}
+  .photo-modal{padding:12px}
+  .photo-dialog-top{padding:24px 22px 0}
+  .photo-dialog-top h3{font-size:30px}
+  .photo-dialog .gallery-form{padding:22px}
+  .form-intro h3{font-size:27px}
+}
+@media (min-width:600px) and (max-width:900px){.cards{grid-template-columns:1fr 1fr}}
+</style>
+<link rel="stylesheet" href="public-destinations.css">
+</head>
+<body>
+
+<header id="top-bar">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="LOGO.png" alt="">Safe Bee Tours</a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="#places">Destinations</a>
+      <a href="#how">How it works</a>
+      <a href="#safety">Why us</a>
+      <a href="#gallery">Gallery</a>
+      <a class="btn sm" href="#inquire">Book a tour</a>
+      <a class="account-link" href="/admin/login/" aria-label="Admin login">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 21a8 8 0 0 0-16 0"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <span class="badge">Private tours across Sri Lanka</span>
+        <h1>Explore the island, <em>safely</em> and in comfort.</h1>
+        <p>Trusted drivers, local guides and plans built around you. From ancient cities and tea hills to golden beaches and wild safaris.</p>
+        <div class="actions">
+          <a class="btn" href="#inquire">Plan my tour</a>
+          <a class="btn ghost" href="#places">See destinations</a>
+        </div>
+      </div>
+      <div class="hero-showcase" id="heroShowcase" aria-label="Safe Bee Tours photo slideshow">
+        <div class="showcase-fallback"><img src="LOGO.png" alt="Safe Bee Tours logo: a bee with a striped shield body"></div>
+        <span class="showcase-label">Safe Bee memories</span>
+      </div>
+    </div>
+    <svg class="curve" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 80V40C240 0 480 0 720 30s480 40 720 0v50z" fill="#fff"/></svg>
+  </div>
+
+  <section id="places">
+    <div class="wrap">
+      <div class="head">
+        <h2>Where we take you</h2><span class="sep"></span>
+        <p>Choose one region or combine several. Every itinerary follows your dates and your pace.</p>
+      </div>
+      <p class="plans-note">These are ready-made tour plans. Open any plan to see the itinerary, choose your pickup location, calculate the round-trip route and send a booking request directly on WhatsApp.</p>
+      <div class="cards" id="planCards"></div>
+    </div>
+  </section>
+
+  <section class="how" id="how">
+    <div class="wrap">
+      <div class="head">
+        <h2>Booking is simple</h2><span class="sep"></span>
+        <p>Three steps from first idea to your first day on the road.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><b>1</b><h3>Send your inquiry</h3><p>Fill in the form below. It opens in WhatsApp with your details ready.</p></div>
+        <div class="step"><b>2</b><h3>Get your plan</h3><p>We reply with a route, hotels and a clear price, and adjust it with you.</p></div>
+        <div class="step"><b>3</b><h3>Travel with ease</h3><p>Your driver meets you on arrival and we stay on WhatsApp throughout.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="safe" id="safety">
+    <div class="wrap">
+      <div class="head">
+        <h2>Why travellers choose Safe Bee</h2><span class="sep"></span>
+        <p>Safety is in our name, and it shapes how we run every trip.</p>
+      </div>
+      <div class="feats">
+        <div class="feat"><svg viewBox="0 0 48 48" fill="none" stroke="#2E8E94" stroke-width="2.5" stroke-linejoin="round"><path d="M24 4l16 6v12c0 11-7 18-16 22C15 40 8 33 8 22V10z"/><path d="M17 24l5 5 9-10" stroke-linecap="round"/></svg><h3>Trusted drivers</h3><p>Licensed, experienced and familiar with every road on your route.</p></div>
+        <div class="feat"><svg viewBox="0 0 48 48" fill="none" stroke="#2E8E94" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><path d="M10 6h22l8 8v28H10z"/><path d="M32 6v8h8M17 24h16M17 31h16M17 38h9"/></svg><h3>Clear plans</h3><p>You know the route, the stops and the price before you travel.</p></div>
+        <div class="feat"><svg viewBox="0 0 48 48" fill="none" stroke="#2E8E94" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><path d="M6 10h36v24H20l-9 8v-8H6z"/><path d="M15 19h18M15 26h11"/></svg><h3>One direct contact</h3><p>Message us on WhatsApp any time, before and during your trip.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="memories" id="gallery">
+    <div class="wrap">
+      <div class="head">
+        <h2>Traveller gallery</h2><span class="sep"></span>
+        <p>Customer photos appear here after approval, alongside memories added by Safe Bee Tours.</p>
+      </div>
+      <div class="gallery-carousel" id="travellerCarousel" role="region" aria-roledescription="carousel" aria-label="Traveller photos" tabindex="0">
+        <button class="carousel-arrow carousel-prev" id="travellerGalleryPrev" type="button" aria-label="Previous gallery photos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="carousel-window">
+          <div class="memory-track" id="publicGallery" aria-live="polite"></div>
+        </div>
+        <button class="carousel-arrow carousel-next" id="travellerGalleryNext" type="button" aria-label="Next gallery photos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+        <div class="carousel-dots" id="galleryCarouselDots" aria-label="Gallery pagination"></div>
+      </div>
+
+      <button class="add-photo-card" id="openCustomerGalleryForm" type="button" aria-label="Add photo to traveller gallery">
+        <span class="add-photo-visual"><span class="add-photo-plus" aria-hidden="true">+</span></span>
+        <span class="add-photo-body"><strong>Add photo</strong><span>Share a favourite Safe Bee Tours moment</span></span>
+      </button>
+
+      <div class="photo-modal" id="customerGalleryModal" aria-hidden="true">
+        <div class="photo-dialog" role="dialog" aria-modal="true" aria-labelledby="customerGalleryTitle">
+          <button class="photo-close" id="closeCustomerGalleryForm" type="button" aria-label="Close photo submission">&times;</button>
+          <div class="photo-dialog-top">
+            <h3 id="customerGalleryTitle">Share a trip photo</h3>
+            <p>Your photo will be reviewed by Safe Bee Tours before it appears in the public gallery.</p>
+          </div>
+          <form class="gallery-form" id="customerGalleryForm">
+            <div class="f"><label for="customerPhotoName">Your name</label><input id="customerPhotoName" name="customerPhotoName" placeholder="Optional"></div>
+            <div class="f"><label for="customerPhotoCaption">Caption</label><input id="customerPhotoCaption" name="customerPhotoCaption" placeholder="Where was this taken?"></div>
+            <div class="f full"><label for="customerPhotoFile">Photo *</label><input id="customerPhotoFile" name="customerPhotoFile" type="file" accept="image/*" required></div>
+            <div class="form-status" id="customerGalleryStatus" role="status" aria-live="polite"></div>
+            <div class="submit"><button class="btn" type="submit">Submit for approval</button></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="inquire" id="inquire">
+    <div class="wrap">
+      <aside>
+        <span class="eyebrow">Plan your Sri Lanka trip</span>
+        <h2>Tell us a little about your trip.</h2>
+        <p>Share your dates, travel style and must-see places. We will help shape it into the right private Sri Lanka experience.</p>
+        <div class="contact">
+          <span><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.4.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.1 1 2 1.3 2.3 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l1.800.9c.3.1.5.2.5.3.1.1.1.6-.1 1.100z"/></svg></span>
+          <div><strong>+94 76 129 4204</strong><small>WhatsApp or call</small></div>
+        </div>
+      </aside>
+
+      <form class="trip-form" id="inquiryForm" novalidate>
+        <div class="form-intro">
+          <span class="eyebrow">Plan your Sri Lanka trip</span>
+          <h3>Tell us a little about your trip and we'll help you create the right experience.</h3>
+        </div>
+        <div class="form-section">
+          <h4>Your Details</h4>
+          <div class="form-grid">
+            <div class="f"><label for="name">Full name *</label><input id="name" name="name" autocomplete="name" required></div>
+            <div class="f"><label for="phone">WhatsApp / Phone *</label><input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+44 7700 900000" required></div>
+            <div class="f"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email"></div>
+            <div class="f"><label for="country">Country</label><input id="country" name="country" autocomplete="country-name"></div>
+          </div>
+        </div>
+        <div class="form-section">
+          <h4>Your Trip</h4>
+          <div class="form-grid">
+            <div class="f"><label for="arrive">Arrival date</label><input id="arrive" name="arrive" type="date"></div>
+            <div class="f"><label for="days">Number of days</label><input id="days" name="days" type="number" min="1" max="60" placeholder="e.g. 7"></div>
+            <div class="f"><label for="adults">Adults</label><input id="adults" name="adults" type="number" min="1" value="2"></div>
+            <div class="f"><label for="kids">Children</label><input id="kids" name="kids" type="number" min="0" value="0"></div>
+          </div>
+        </div>
+        <fieldset class="form-section interest-section">
+          <legend>What are you interested in?</legend>
+          <div class="chips">
+            <label><input type="checkbox" name="interest" value="Culture & heritage"><span>Culture &amp; heritage</span></label>
+            <label><input type="checkbox" name="interest" value="Wildlife safari"><span>Wildlife safari</span></label>
+            <label><input type="checkbox" name="interest" value="Tea hills & trains"><span>Tea hills &amp; trains</span></label>
+            <label><input type="checkbox" name="interest" value="Beaches"><span>Beaches</span></label>
+            <label><input type="checkbox" name="interest" value="Whale watching"><span>Whale watching</span></label>
+            <label><input type="checkbox" name="interest" value="Adventure & hiking"><span>Adventure &amp; hiking</span></label>
+            <label><input type="checkbox" name="interest" value="Honeymoon"><span>Honeymoon</span></label>
+          </div>
+        </fieldset>
+        <div class="form-section">
+          <h4>Anything else we should know?</h4>
+          <div class="f"><label class="sr-only" for="msg">Anything else we should know?</label><textarea id="msg" name="msg" rows="4" placeholder="Places you want to visit, hotel style, budget, special needs"></textarea></div>
+        </div>
+        <div id="status" role="status" aria-live="polite"></div>
+        <div class="submit">
+          <button class="btn" type="submit">Send my trip request &rarr;</button>
+          <p class="note">We'll continue the conversation on WhatsApp.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<div class="modal" id="planModal" aria-hidden="true">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="close-modal" id="closeModal" aria-label="Close">&times;</button>
+    <div class="gallery" id="modalGallery"></div><div class="modal-top"><h2 id="modalTitle"></h2><p id="modalDesc"></p><div class="customize-note"><strong>Make it your own.</strong> This is a ready-made plan, but you can customize the itinerary, stops, timing and activities according to your preferences by discussing them with Safe Bee Tours.</div></div>
+    <div class="modal-grid">
+      <div class="detail-box"><h3>Itinerary</h3><ul id="modalItinerary"></ul></div>
+      <div class="detail-box"><h3>Plan details</h3><div id="modalDetails"></div></div>
+      <div class="route-box">
+        <h3>Route preview</h3>
+        <p>By default, the route starts from <strong>Bandaranaike International Airport</strong>. A customer can optionally enter their hotel, home or another pickup point to see a personalized route.</p>
+        <div class="route-form"><input id="pickupLocation" placeholder="Optional: change pickup location" autocomplete="street-address"><button class="btn dark" id="calculateRoute" type="button">Update route</button></div>
+        <div class="route-result" id="routeResult"></div>
+        <a id="mapLink" class="map-link" href="#" target="_blank" rel="noopener" style="display:none">Open full route in Google Maps ↗</a>
+      </div>
+      <div class="booking">
+        <h3>Interested in this plan?</h3>
+        <p style="color:#555;margin:-5px 0 15px">Send us your preferred date and details. You can also discuss any changes you would like to make to this itinerary.</p>
+        <div class="booking-form">
+          <div class="f"><label for="bookName">Full name *</label><input id="bookName" required></div>
+          <div class="f"><label for="bookPhone">Phone / WhatsApp *</label><input id="bookPhone" type="tel" required></div>
+          <div class="f"><label for="bookDate">Preferred date *</label><input id="bookDate" type="date" required></div>
+          <div class="f"><label for="bookPeople">Travellers *</label><input id="bookPeople" type="number" min="1" value="2" required></div>
+          <div class="f full"><label for="bookNotes">Special requests</label><textarea id="bookNotes" rows="3" placeholder="Hotel preference, children, special stops, etc."></textarea></div>
+          <div class="full"><button class="btn" id="bookPlan" type="button">Book this tour on WhatsApp</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; <span id="yr"></span> Safe Bee Tours, Sri Lanka</span>
+    <a href="https://wa.me/94761294204" target="_blank" rel="noopener">WhatsApp +94 76 129 4204</a>
+  </div>
+</footer>
+
+<a class="fab" href="https://wa.me/94761294204" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.4.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.1 1 2 1.3 2.3 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l1.8.9c.3.1.5.2.5.3.1.1.1.6-.1 1.1z"/></svg>
+</a>
+
+<script>
+(function(){
+  var NUMBER="94761294204";
+  document.getElementById("yr").textContent=new Date().getFullYear();
+  var bar=document.getElementById("top-bar");
+  function onScroll(){bar.classList.toggle("solid",window.scrollY>40)}
+  onScroll();window.addEventListener("scroll",onScroll,{passive:true});
+
+  var HERO_PHOTOS=["images/memo.jpg","images/memo 01.jpg","images/memo 02.jpg","images/memo 03.jpg","images/memo 04.jpg","images/memo 05.jpg","images/memo 06.jpg","images/memo 07.jpg","images/memo 08.jpg","images/memo 09.jpg","images/memo 10.jpg","images/memo 11.jpg","images/memo 12.jpg"];
+  function initHeroShowcase(){
+    var hero=document.getElementById("heroShowcase");
+    if(!hero)return;
+    var fallback=hero.querySelector(".showcase-fallback"),label=hero.querySelector(".showcase-label"),index=0,timer=null;
+    function readySlides(){return hero.querySelectorAll(".showcase-slide.is-loaded")}
+    function show(i){
+      var ready=readySlides();
+      if(!ready.length)return;
+      index=(i+ready.length)%ready.length;
+      Array.prototype.forEach.call(hero.querySelectorAll(".showcase-slide"),function(slide){slide.classList.remove("active")});
+      ready[index].classList.add("active");
+    }
+    HERO_PHOTOS.forEach(function(src,i){
+      var slide=document.createElement("div"),img=document.createElement("img");
+      slide.className="showcase-slide";
+      img.alt="Safe Bee Tours memory photo "+(i+1);
+      img.onload=function(){
+        slide.classList.add("is-loaded");
+        hero.classList.add("has-photos");
+        show(index);
+        if(!timer&&readySlides().length>1&&!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+          timer=window.setInterval(function(){show(index+1)},4200);
+        }
+      };
+      img.onerror=function(){slide.remove()};
+      slide.appendChild(img);
+      hero.insertBefore(slide,fallback);
+      img.src=src;
+    });
+    if(label)hero.appendChild(label);
+  }
+  initHeroShowcase();
+
+  /* Add or edit your tour plans here. Replace image paths when you add your photos. */
+  var PLANS=[
+    {id:"sigiriya",title:"Sigiriya & Cultural Triangle",tag:"Culture & Heritage",days:"2 Days / 1 Night",desc:"A focused cultural journey covering the famous Lion Rock area and the ancient heritage of the Cultural Triangle.",image:"images/sigiriya.jpg",images:["images/sigiriya-1.jpg","images/sigiriya-2.jpg","images/sigiriya-3.jpg"],stops:["Sigiriya, Sri Lanka","Dambulla Cave Temple, Sri Lanka"],itinerary:["Day 1 — Pickup from your location, travel towards Sigiriya, visit Dambulla Cave Temple and continue to Sigiriya.","Day 2 — Sigiriya area sightseeing, then return to the customer's pickup location."],details:["Private tour plan","Pickup and return to customer's location","Main route: pickup → Dambulla → Sigiriya → pickup","Final timing can be adjusted with Safe Bee Tours"]},
+    {id:"kandy",title:"Kandy",tag:"Culture & Nature",days:"1 Day",desc:"A relaxed Kandy day covering the Temple of the Tooth, Royal Botanical Gardens and the city around Kandy Lake.",image:"images/kandy.jpg",images:["images/kandy-1.jpg","images/kandy-2.jpg","images/kandy-3.jpg"],stops:["Temple of the Sacred Tooth Relic, Kandy, Sri Lanka","Royal Botanic Gardens, Peradeniya, Sri Lanka"],itinerary:["Morning — Pickup from your location and travel to Kandy.","Day visit — Temple of the Tooth area, Kandy Lake and Royal Botanical Gardens.","Evening — Return to the customer's pickup location."],details:["Private day tour","Pickup and return to customer's location","Main route: pickup → Kandy → Peradeniya → pickup","Stops can be adjusted before booking"]},
+    {id:"ella",title:"Ella & Hill Country",tag:"Tea Hills & Scenic Views",days:"2 Days / 1 Night",desc:"Explore Ella's mountain scenery, tea country and famous viewpoints at a comfortable pace.",image:"images/ella.jpg",images:["images/ella-1.jpg","images/ella-2.jpg","images/ella-3.jpg"],stops:["Nine Arches Bridge, Ella, Sri Lanka","Ella, Sri Lanka"],itinerary:["Day 1 — Pickup and journey into the hill country, with scenic stops on the way to Ella.","Day 2 — Ella sightseeing including Nine Arches Bridge area, then return to the customer's pickup location."],details:["Private hill-country plan","Pickup and return to customer's location","Main route: pickup → Ella → Nine Arches Bridge → pickup","Train experience can be discussed as an optional arrangement"]},
+    {id:"galle",title:"Galle & South Coast",tag:"Beaches & Heritage",days:"1 Day",desc:"A south-coast escape combining Galle Fort, coastal scenery and time by the beach.",image:"images/galle.jpg",images:["images/galle-1.jpg","images/galle-2.jpg","images/galle-3.jpg"],stops:["Galle Fort, Galle, Sri Lanka","Mirissa, Sri Lanka"],itinerary:["Morning — Pickup and coastal drive towards Galle.","Day visit — Explore Galle Fort and continue along the South Coast.","Evening — Return to the customer's pickup location."],details:["Private coastal tour","Pickup and return to customer's location","Main route: pickup → Galle Fort → South Coast → pickup","Beach and coastal stops can be selected"]},
+    {id:"yala",title:"Yala & Udawalawe",tag:"Wildlife Safari",days:"2 Days / 1 Night",desc:"A wildlife-focused plan built around safari experiences in Sri Lanka's southern wildlife region.",image:"images/yala.jpg",images:["images/yala-1.jpg","images/yala-2.jpg","images/yala-3.jpg"],stops:["Udawalawe National Park, Sri Lanka","Yala National Park, Sri Lanka"],itinerary:["Day 1 — Pickup and travel towards the wildlife region, with an optional Udawalawe safari arrangement.","Day 2 — Yala area safari arrangement and return journey to the customer's pickup location."],details:["Private wildlife plan","Pickup and return to customer's location","Main route: pickup → Udawalawe → Yala → pickup","Safari entrance/timing arrangements are confirmed separately"]},
+    {id:"trinco",title:"Trincomalee & East Coast",tag:"East Coast",days:"2 Days / 1 Night",desc:"Discover Trincomalee's coastline, clear water and relaxed East Coast atmosphere.",image:"images/trincomalee.jpg",images:["images/trincomalee-1.jpg","images/trincomalee-2.jpg","images/trincomalee-3.jpg"],stops:["Trincomalee, Sri Lanka","Pigeon Island National Park, Sri Lanka"],itinerary:["Day 1 — Pickup and journey to Trincomalee, with coastal and local sightseeing.","Day 2 — Trincomalee / Pigeon Island arrangements, then return to the customer's pickup location."],details:["Private East Coast plan","Pickup and return to customer's location","Main route: pickup → Trincomalee → Pigeon Island → pickup","Boat and activity arrangements can be discussed"]}
+  ];
+
+  var cards=document.getElementById("planCards");
+  cards.innerHTML=PLANS.map(function(p){return '<article class="plan-card" tabindex="0" role="button" data-id="'+p.id+'" aria-label="Open '+p.title+' tour plan"><div class="plan-photo"><img src="'+p.image+'" alt="'+p.title+'" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'grid\';"><div class="photo-placeholder">Your destination photo</div><span class="plan-tag">'+p.tag+'</span></div><div class="plan-body"><h3>'+p.title+'</h3><p class="plan-desc">'+p.desc+'</p><div class="plan-meta"><span>'+p.days+'</span><span>Private tour</span><span>Airport default</span></div></div></article>';}).join("");
+
+  var modal=document.getElementById("planModal"), current=null;
+  var title=document.getElementById("modalTitle"),desc=document.getElementById("modalDesc"),itin=document.getElementById("modalItinerary"),details=document.getElementById("modalDetails");
+  var gallery=document.getElementById("modalGallery");
+  var galleryIndex=0;
+  function renderGallery(plan){
+    var photos=plan.images||[plan.image];
+    galleryIndex=0;
+    gallery.innerHTML=photos.map(function(src,i){return '<div class="gallery-slide '+(i===0?'active':'')+'"><img src="'+src+'" alt="'+plan.title+' photo '+(i+1)+'" onerror="this.style.display=\'none\';"><div class="gallery-placeholder">Add your '+plan.title+' photos here</div></div>';}).join('')+
+      '<div class="gallery-nav"><button type="button" id="galleryPrev" aria-label="Previous photo">‹</button><button type="button" id="galleryNext" aria-label="Next photo">›</button></div>'+
+      '<div class="gallery-dots">'+photos.map(function(_,i){return '<button type="button" data-slide="'+i+'" class="'+(i===0?'active':'')+'" aria-label="Photo '+(i+1)+'"></button>';}).join('')+'</div>';
+    var slides=gallery.querySelectorAll('.gallery-slide'),dots=gallery.querySelectorAll('.gallery-dots button');
+    function show(i){galleryIndex=(i+slides.length)%slides.length;slides.forEach(function(x,n){x.classList.toggle('active',n===galleryIndex)});dots.forEach(function(x,n){x.classList.toggle('active',n===galleryIndex)});}
+    document.getElementById('galleryPrev').onclick=function(){show(galleryIndex-1)};
+    document.getElementById('galleryNext').onclick=function(){show(galleryIndex+1)};
+    dots.forEach(function(x){x.onclick=function(){show(Number(x.dataset.slide))}});
+  }
+  function openPlan(id,booking){
+    current=PLANS.find(function(p){return p.id===id}); if(!current)return;
+    title.textContent=current.title; desc.textContent=current.desc;
+    renderGallery(current);
+    itin.innerHTML=current.itinerary.map(function(x){return '<li>'+x+'</li>'}).join("");
+    details.innerHTML='<p><strong>'+current.days+'</strong></p>'+current.details.map(function(x){return '<p style="margin-top:8px;color:#555">'+x+'</p>'}).join("");
+    document.getElementById("pickupLocation").value="";
+    document.getElementById("routeResult").style.display="none";document.getElementById("routeResult").innerHTML="";document.getElementById("mapLink").style.display="none";
+    modal.classList.add("open");modal.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";
+    setTimeout(function(){calculateRoute(true)},120);
+    if(booking) setTimeout(function(){document.getElementById("bookName").focus()},150);
+  }
+  function closePlan(){modal.classList.remove("open");modal.setAttribute("aria-hidden","true");document.body.style.overflow=""}
+  cards.addEventListener("click",function(e){var card=e.target.closest(".plan-card");if(!card)return;openPlan(card.dataset.id,false)});
+  cards.addEventListener("keydown",function(e){var card=e.target.closest(".plan-card");if(card&&(e.key==="Enter"||e.key===" ")){e.preventDefault();openPlan(card.dataset.id,false)}});
+  document.getElementById("closeModal").onclick=closePlan;
+  modal.addEventListener("click",function(e){if(e.target===modal)closePlan()});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")closePlan()});
+
+  function esc(s){return String(s||"").replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]})}
+  async function geocode(q){
+    var r=await fetch("https://photon.komoot.io/api/?q="+encodeURIComponent(q)+"&limit=1");
+    if(!r.ok)throw new Error("Location service unavailable");
+    var j=await r.json(); if(!j.features||!j.features.length)throw new Error("Location not found");
+    return j.features[0].geometry.coordinates;
+  }
+  async function routeFor(plan,origin){
+    var points=[await geocode(origin)];
+    for(var i=0;i<plan.stops.length;i++)points.push(await geocode(plan.stops[i]));
+    points.push(points[0]);
+    var coords=points.map(function(x){return x[0]+","+x[1]}).join(";");
+    var r=await fetch("https://router.project-osrm.org/route/v1/driving/"+coords+"?overview=false&steps=false");
+    if(!r.ok)throw new Error("Route service unavailable");
+    var j=await r.json(); if(j.code!=="Ok"||!j.routes||!j.routes[0])throw new Error("Could not calculate this route");
+    return {km:j.routes[0].distance/1000,minutes:j.routes[0].duration/60,coords:points};
+  }
+  async function calculateRoute(isDefault){
+    var input=document.getElementById("pickupLocation"),res=document.getElementById("routeResult"),map=document.getElementById("mapLink"),origin=input.value.trim()||"Bandaranaike International Airport, Katunayake, Sri Lanka";
+    var btn=document.getElementById("calculateRoute");btn.disabled=true;btn.textContent="Calculating…";res.style.display="block";res.innerHTML="Calculating the route preview…";
+    try{
+      var r=await routeFor(current,origin),hours=Math.floor(r.minutes/60),mins=Math.round(r.minutes%60),time=(hours?hours+" hr ":"")+mins+" min";
+      res.innerHTML='<strong>Approx. round-trip distance: '+r.km.toFixed(0)+' km</strong><small>Approx. driving time: '+time+' · Start: '+esc(origin)+' · Route: '+current.stops.join(' → ')+' · Return to '+esc(origin)+'</small>';
+      var wp=[origin].concat(current.stops).concat([origin]);map.href="https://www.google.com/maps/dir/"+wp.map(encodeURIComponent).join("/");map.style.display="inline-block";
+    }catch(err){res.innerHTML='<strong>Route preview is unavailable right now.</strong><small>You can still view the plan and send a booking request. The final route can be confirmed with Safe Bee Tours.</small>';map.style.display="none"}
+    btn.disabled=false;btn.textContent="Update route";
+  }
+  document.getElementById("calculateRoute").onclick=function(){calculateRoute(false)};
+
+  document.getElementById("bookPlan").onclick=function(){
+    var name=document.getElementById("bookName").value.trim(),phone=document.getElementById("bookPhone").value.trim(),date=document.getElementById("bookDate").value,people=document.getElementById("bookPeople").value,notes=document.getElementById("bookNotes").value.trim(),pickup=document.getElementById("pickupLocation").value.trim();
+    if(!name||!phone||!date){alert("Please enter your name, phone number and preferred date.");return}
+    var pickupUsed=pickup||"Bandaranaike International Airport, Katunayake, Sri Lanka (default)";
+    var lines=["*New tour booking request - Safe Bee Tours*","","Plan: "+current.title,"Duration: "+current.days,"Customer: "+name,"Phone: "+phone,"Preferred date: "+date,"Travellers: "+people,"Pickup location: "+pickupUsed,"Route: pickup → "+current.stops.join(" → ")+" → pickup",notes?"Special requests: "+notes:null,"","Customer understands the itinerary can be customized by discussion.","Please confirm availability, final route, timing and price."].filter(Boolean);
+    var url="https://wa.me/"+NUMBER+"?text="+encodeURIComponent(lines.join("\n"));window.open(url,"_blank");
+  };
+
+  var GALLERY_KEY="safeBeeGalleryItems";
+  var INQUIRY_KEY="safeBeeInquiries";
+  var SEED_GALLERY=[
+    {id:"seed-sigiriya",title:"Sigiriya memories",caption:"Cultural routes with Safe Bee Tours.",src:"images/sigiriya-1.jpg",status:"approved",source:"admin"},
+    {id:"seed-kandy",title:"Kandy moments",caption:"Temple city stops and relaxed hill-country days.",src:"images/kandy-1.jpg",status:"approved",source:"admin"},
+    {id:"seed-ella",title:"Ella views",caption:"Tea hills, bridges and mountain air.",src:"images/ella-1.jpg",status:"approved",source:"admin"}
+  ];
+
+  function getStoredGallery(){
+    try{
+      var raw=localStorage.getItem(GALLERY_KEY);
+      return raw?JSON.parse(raw):[];
+    }catch(err){return []}
+  }
+  function saveStoredGallery(items){
+    try{
+      localStorage.setItem(GALLERY_KEY,JSON.stringify(items));
+      return true;
+    }catch(err){return false}
+  }
+  function showStatus(el,msg){
+    if(!el)return;
+    el.style.display="block";
+    el.textContent=msg;
+  }
+  function galleryId(prefix){return prefix+"-"+Date.now()+"-"+Math.random().toString(16).slice(2)}
+  function resizeImageFile(file){
+    return new Promise(function(resolve,reject){
+      if(!file||!/^image\//.test(file.type)){reject(new Error("Please choose an image file."));return}
+      var reader=new FileReader();
+      reader.onerror=function(){reject(new Error("Could not read that image."))};
+      reader.onload=function(){
+        var img=new Image();
+        img.onerror=function(){reject(new Error("Could not load that image."))};
+        img.onload=function(){
+          var maxW=1200,maxH=1500,scale=Math.min(maxW/img.width,maxH/img.height,1);
+          var canvas=document.createElement("canvas"),ctx=canvas.getContext("2d");
+          canvas.width=Math.max(1,Math.round(img.width*scale));
+          canvas.height=Math.max(1,Math.round(img.height*scale));
+          ctx.drawImage(img,0,0,canvas.width,canvas.height);
+          resolve(canvas.toDataURL("image/jpeg",0.84));
+        };
+        img.src=reader.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+  function publicGalleryItems(){
+    return SEED_GALLERY.concat(getStoredGallery().filter(function(item){return item.status==="approved"}));
+  }
+  var galleryCarouselIndex=0,galleryVisibleCount=3,galleryCarouselItems=[];
+  function galleryVisibleForViewport(){
+    if(window.matchMedia("(min-width: 960px)").matches)return 3;
+    if(window.matchMedia("(min-width: 640px)").matches)return 2;
+    return 1;
+  }
+  function galleryMaxIndex(){return Math.max(0,galleryCarouselItems.length-galleryVisibleCount)}
+  function renderGalleryDots(){
+    var dots=document.getElementById("galleryCarouselDots");
+    if(!dots)return;
+    var count=galleryMaxIndex()+1;
+    dots.innerHTML=count>1?Array.from({length:count},function(_,i){return '<button type="button" data-gallery-dot="'+i+'" class="'+(i===galleryCarouselIndex?'active':'')+'" aria-label="Show gallery photo set '+(i+1)+'"></button>'}).join(""):"";
+  }
+  function updateGalleryCarousel(skipMotion){
+    var root=document.getElementById("travellerCarousel"),track=document.getElementById("publicGallery"),prev=document.getElementById("travellerGalleryPrev"),next=document.getElementById("travellerGalleryNext");
+    if(!root||!track)return;
+    galleryVisibleCount=Math.min(galleryVisibleForViewport(),Math.max(galleryCarouselItems.length,1));
+    var gap=parseFloat(getComputedStyle(track).columnGap)||24;
+    root.style.setProperty("--gallery-card-width","calc((100% - "+(gap*(galleryVisibleCount-1))+"px) / "+galleryVisibleCount+")");
+    galleryCarouselIndex=Math.min(galleryCarouselIndex,galleryMaxIndex());
+    galleryCarouselIndex=Math.max(0,galleryCarouselIndex);
+    var first=track.querySelector(".memory-card");
+    var shift=first?(first.getBoundingClientRect().width+gap)*galleryCarouselIndex:0;
+    if(skipMotion)track.style.transition="none";
+    track.style.transform="translateX(-"+shift+"px)";
+    if(skipMotion)requestAnimationFrame(function(){track.style.transition=""});
+    root.classList.toggle("is-static",galleryMaxIndex()===0);
+    if(prev)prev.disabled=galleryCarouselIndex===0;
+    if(next)next.disabled=galleryCarouselIndex>=galleryMaxIndex();
+    renderGalleryDots();
+  }
+  function moveGalleryCarousel(delta){
+    galleryCarouselIndex=Math.min(Math.max(galleryCarouselIndex+delta,0),galleryMaxIndex());
+    updateGalleryCarousel(false);
+  }
+  function renderPublicGallery(){
+    var grid=document.getElementById("publicGallery");
+    if(!grid)return;
+    var items=publicGalleryItems();
+    galleryCarouselItems=items;
+    grid.innerHTML=items.map(function(item,i){return '<article class="memory-card" role="group" aria-label="'+esc((i+1)+" of "+items.length+": "+(item.title||"Safe Bee gallery photo"))+'"><div class="memory-photo"><img src="'+esc(item.src)+'" alt="'+esc(item.title||"Safe Bee Tours gallery photo")+'" loading="lazy" decoding="async"></div><div class="memory-body"><h3>'+esc(item.title||"Safe Bee memory")+'</h3><p>'+esc(item.caption||"Shared from a Safe Bee Tours journey.")+'</p></div></article>'}).join("");
+    updateGalleryCarousel(true);
+  }
+  function addStoredGalleryItem(item,statusEl,successMsg){
+    var items=getStoredGallery();
+    items.unshift(item);
+    if(!saveStoredGallery(items)){showStatus(statusEl,"This photo is too large for browser storage. Try a smaller image.");return false}
+    showStatus(statusEl,successMsg);
+    renderPublicGallery();
+    return true;
+  }
+  function initGalleryManager(){
+    renderPublicGallery();
+    var root=document.getElementById("travellerCarousel"),track=document.getElementById("publicGallery"),prev=document.getElementById("travellerGalleryPrev"),next=document.getElementById("travellerGalleryNext"),dots=document.getElementById("galleryCarouselDots");
+    if(prev)prev.addEventListener("click",function(){moveGalleryCarousel(-1)});
+    if(next)next.addEventListener("click",function(){moveGalleryCarousel(1)});
+    if(dots)dots.addEventListener("click",function(e){var dot=e.target.closest("button[data-gallery-dot]");if(!dot)return;galleryCarouselIndex=Number(dot.dataset.galleryDot);updateGalleryCarousel(false)});
+    if(root)root.addEventListener("keydown",function(e){if(e.key==="ArrowLeft"){e.preventDefault();moveGalleryCarousel(-1)}if(e.key==="ArrowRight"){e.preventDefault();moveGalleryCarousel(1)}});
+    var touchStart=0,touchDelta=0;
+    if(track){
+      track.addEventListener("touchstart",function(e){touchStart=e.touches[0].clientX;touchDelta=0},{passive:true});
+      track.addEventListener("touchmove",function(e){touchDelta=e.touches[0].clientX-touchStart},{passive:true});
+      track.addEventListener("touchend",function(){if(Math.abs(touchDelta)>45)moveGalleryCarousel(touchDelta<0?1:-1);touchStart=0;touchDelta=0});
+    }
+    window.addEventListener("resize",function(){updateGalleryCarousel(true)});
+
+    var customerModal=document.getElementById("customerGalleryModal"),openCustomer=document.getElementById("openCustomerGalleryForm"),closeCustomer=document.getElementById("closeCustomerGalleryForm");
+    function openCustomerModal(){
+      customerModal.classList.add("open");
+      customerModal.setAttribute("aria-hidden","false");
+      document.body.style.overflow="hidden";
+      setTimeout(function(){document.getElementById("customerPhotoName").focus()},60);
+    }
+    function closeCustomerModal(){
+      customerModal.classList.remove("open");
+      customerModal.setAttribute("aria-hidden","true");
+      document.body.style.overflow="";
+      if(openCustomer)openCustomer.focus();
+    }
+    if(openCustomer)openCustomer.addEventListener("click",openCustomerModal);
+    if(closeCustomer)closeCustomer.addEventListener("click",closeCustomerModal);
+    if(customerModal)customerModal.addEventListener("click",function(e){if(e.target===customerModal)closeCustomerModal()});
+    document.addEventListener("keydown",function(e){if(e.key==="Escape"&&customerModal.classList.contains("open"))closeCustomerModal()});
+
+    var customerForm=document.getElementById("customerGalleryForm"),customerStatus=document.getElementById("customerGalleryStatus");
+    customerForm.addEventListener("submit",function(e){
+      e.preventDefault();
+      var button=customerForm.querySelector("button[type=submit]"),file=customerForm.elements.customerPhotoFile.files[0];
+      button.disabled=true;button.textContent="Saving...";
+      resizeImageFile(file).then(function(src){
+        var name=customerForm.elements.customerPhotoName.value.trim();
+        var caption=customerForm.elements.customerPhotoCaption.value.trim();
+        var item={id:galleryId("customer"),title:name?name+"'s photo":"Customer photo",caption:caption,status:"pending",source:"customer",src:src,createdAt:new Date().toISOString()};
+        if(addStoredGalleryItem(item,customerStatus,"Thanks. Your photo is waiting for review."))customerForm.reset();
+      },function(err){showStatus(customerStatus,err.message)}).then(function(){
+        button.disabled=false;button.textContent="Submit for approval";
+      });
+    });
+  }
+  initGalleryManager();
+
+  function getStoredInquiries(){
+    try{
+      var raw=localStorage.getItem(INQUIRY_KEY);
+      return raw?JSON.parse(raw):[];
+    }catch(err){return []}
+  }
+  function saveInquiry(inquiry){
+    try{
+      var items=getStoredInquiries();
+      items.unshift(inquiry);
+      localStorage.setItem(INQUIRY_KEY,JSON.stringify(items));
+    }catch(err){}
+  }
+
+  /* Existing WhatsApp inquiry flow, with local lead history for the admin dashboard. */
+  var form=document.getElementById("inquiryForm"),status=document.getElementById("status");
+  function val(id){return form.elements[id].value.trim()}
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    if(!val("name")||!val("phone")){
+      status.style.display="block";
+      status.textContent="Please enter your name and WhatsApp / phone number so we can reply.";
+      (val("name")?form.elements.phone:form.elements.name).focus();
+      return;
+    }
+    var interests=Array.prototype.map.call(form.querySelectorAll('input[name="interest"]:checked'),function(i){return i.value});
+    var inquiry={
+      id:"inq-"+Date.now()+"-"+Math.random().toString(16).slice(2),
+      name:val("name"),
+      phone:val("phone"),
+      email:val("email"),
+      country:val("country"),
+      arrive:val("arrive"),
+      days:val("days"),
+      adults:val("adults")||"1",
+      kids:val("kids")||"0",
+      interests:interests,
+      message:val("msg"),
+      status:"New",
+      createdAt:new Date().toISOString(),
+      source:"public-form"
+    };
+    saveInquiry(inquiry);
+    var interestText=interests.join(", ");
+    var lines=["*New tour inquiry - Safe Bee Tours*","","Name: "+inquiry.name,"Phone: "+inquiry.phone,inquiry.email?"Email: "+inquiry.email:null,inquiry.country?"Country: "+inquiry.country:null,inquiry.arrive?"Arrival date: "+inquiry.arrive:null,inquiry.days?"Days: "+inquiry.days:null,"Travellers: "+inquiry.adults+" adult(s), "+inquiry.kids+" child(ren)",interestText?"Interests: "+interestText:null,inquiry.message?"Notes: "+inquiry.message:null].filter(function(l){return l!==null});
+    var url="https://wa.me/"+NUMBER+"?text="+encodeURIComponent(lines.join("\n"));
+    var win=window.open(url,"_blank");
+    status.style.display="block";
+    status.innerHTML='Your trip request is ready in WhatsApp. Press send to deliver it. If nothing opened, <a href="'+url+'" target="_blank" rel="noopener">tap here to open WhatsApp</a>.';
+    if(!win){window.location.href=url}
+  });
+})();
+</script>
+<script src="js/public-destinations.js"></script>
+</body>
+</html>
